@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./style/style.css" />
   </head>
   <body>
@@ -55,181 +56,247 @@
         </div>
       </div>
     </section>
-    <div class="post-featured container">
-      <h2 class="heading">Tin Nổi Bật</h2>
+    <div class="container">
+      <h2 class="heading">
+        Bài Viết Nổi Bật
+      </h2>
+    <div class="post-feature">
+        <a href="#" class="post-feature-media post-media">
+          <img
+            src="https://cdn.dribbble.com/users/2539288/screenshots/15326794/media/4c3268cdbc069e4ff03979d9b9a16e11.jpg?compress=1&resize=1600x1200"
+            alt=""
+            class="post-feature-image"
+          />
+        </a>
+        <div class="post-feature-info">
+          <a href="#" class="post-category">The newest</a>
+          <h2>
+            <a href="#" class="post-feature-title post-title"
+              >HowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmm</a
+            >
+          </h2>
+          <p class="post-desc">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur
+            quas distinctio, quis minima magni sint accusamus! Aliquid
+            distinctio unde porro adipisci totam itaque, laudantium natus!
+            Repudiandae perferendis mollitia ipsam repellendus.
+          </p>
+          <a href="#" class="post-author">
+            <img
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
+              alt=""
+              class="post-author-image"
+            />
+            <div class="post-author-info">
+              <h4 class="post-author-name">By Sebastian</h4>
+              <time class="post-author-time">Just now</time>
+            </div>
+          </a>
+        </div>
+      </div>
       <div class="post-list">
         <div class="post-item">
-          <div class="post-image">
+          <a href="#" class="post-media">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/my-blogging-8826d.appspot.com/o/images%2F5f44d4298582b.jpg?alt=media&token=20d538a3-dd83-4963-bf36-8605df8b5253"
+              src="https://cdn.dribbble.com/users/5209175/screenshots/15329869/media/46b95b0ec58274621935463cd534f793.jpg?compress=1&resize=1600x1200"
               alt=""
+              class="post-image"
             />
-          </div>
-          <div class="post-content">
-            <a href="#" class="post-title">Lorem ipsum dolor sit amet.</a>
-            <div class="post-info">
-              <a href="#" class="post-category">the thao</a>
-              <span class="post-date">2021-04-10</span>
-              <span class="post-author">Admin</span>
+          </a>
+          <a href="#" class="post-category">Shop</a>
+          <h3>
+            <a href="#" class="post-title"
+              >How to choose best bike for spring in Australia</a
+            >
+          </h3>
+          <p class="post-desc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            at quae architecto perspiciatis dolore deleniti, voluptas aperiam
+            dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
+            nostrum quae.
+          </p>
+          <a href="#" class="post-author">
+            <img
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
+              alt=""
+              class="post-author-image"
+            />
+            <div class="post-author-info">
+              <h4 class="post-author-name">By Sebastian</h4>
+              <time class="post-author-time">Just now</time>
             </div>
-            <p class="post-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-              voluptates, quod, quia, voluptatibus quae voluptatem quas
-              consequuntur quibusdam quidem voluptatum quos. Quisquam, quae
-              voluptas. Quisquam, quae voluptas.
-            </p>
-            <a href="#" class="post-link">Read More</a>
-          </div>
+          </a>
         </div>
         <div class="post-item">
-          <div class="post-image">
+          <a href="#" class="post-media">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/my-blogging-8826d.appspot.com/o/images%2F5f44d4298582b.jpg?alt=media&token=20d538a3-dd83-4963-bf36-8605df8b5253"
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
               alt=""
+              class="post-image"
             />
-          </div>
-          <div class="post-content">
-            <a href="#" class="post-title">Lorem ipsum dolor sit amet.</a>
-            <div class="post-info">
-              <a href="#" class="post-category">the thao</a>
-              <span class="post-date">2021-04-10</span>
-              <span class="post-author">Admin</span>
+          </a>
+          <a href="#" class="post-category">Shop</a>
+          <h3>
+            <a href="#" class="post-title"
+              >How to choose best bike for spring in Australia</a
+            >
+          </h3>
+          <p class="post-desc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            at quae architecto perspiciatis dolore deleniti, voluptas aperiam
+            dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
+            nostrum quae.
+          </p>
+          <a href="#" class="post-author">
+            <img
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
+              alt=""
+              class="post-author-image"
+            />
+            <div class="post-author-info">
+              <h4 class="post-author-name">By Sebastian</h4>
+              <time class="post-author-time">Just now</time>
             </div>
-            <p class="post-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-              voluptates, quod, quia, voluptatibus quae voluptatem quas
-              consequuntur quibusdam quidem voluptatum quos. Quisquam, quae
-              voluptas. Quisquam, quae voluptas.
-            </p>
-            <a href="#" class="post-link">Read More</a>
-          </div>
+          </a>
         </div>
         <div class="post-item">
-          <div class="post-image">
+          <a href="#" class="post-media">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/my-blogging-8826d.appspot.com/o/images%2F5f44d4298582b.jpg?alt=media&token=20d538a3-dd83-4963-bf36-8605df8b5253"
+              src="https://cdn.dribbble.com/users/486985/screenshots/15329016/media/de4829c5298afd8ed930e796154e276a.jpg?compress=1&resize=1600x1200"
               alt=""
+              class="post-image"
             />
-          </div>
-          <div class="post-content">
-            <a href="#" class="post-title">Lorem ipsum dolor sit amet.</a>
-            <div class="post-info">
-              <a href="#" class="post-category">the thao</a>
-              <span class="post-date">2021-04-10</span>
-              <span class="post-author">Admin</span>
+          </a>
+          <a href="#" class="post-category">Shop</a>
+          <h3>
+            <a href="#" class="post-title"
+              >How to choose best bike for spring in Australia</a
+            >
+          </h3>
+          <p class="post-desc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            at quae architecto perspiciatis dolore deleniti, voluptas aperiam
+            dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
+            nostrum quae.
+          </p>
+          <a href="#" class="post-author">
+            <img
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
+              alt=""
+              class="post-author-image"
+            />
+            <div class="post-author-info">
+              <h4 class="post-author-name">By Sebastian</h4>
+              <time class="post-author-time">Just now</time>
             </div>
-            <p class="post-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-              voluptates, quod, quia, voluptatibus quae voluptatem quas
-              consequuntur quibusdam quidem voluptatum quos. Quisquam, quae
-              voluptas. Quisquam, quae voluptas.
-            </p>
-            <a href="#" class="post-link">Read More</a>
-          </div>
+          </a>
         </div>
       </div>
-    </div>
-    <div class="post-new container">
-      <h2 class="heading">Bài Viết Mới Nhất</h2>
-      <div class="post-new-main">
-        <div class="post-new-left">
-          <div class="post-item">
-            <div class="post-image">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/my-blogging-8826d.appspot.com/o/images%2F5f44d4298582b.jpg?alt=media&token=20d538a3-dd83-4963-bf36-8605df8b5253"
-                alt=""
-              />
+      <div class="post-new">
+        <h2 class="heading">
+          Bài Viết Mới Nhất
+        </h2>
+        <div class="post-list">
+        <div class="post-item">
+          <a href="#" class="post-media">
+            <img
+              src="https://cdn.dribbble.com/users/5209175/screenshots/15329869/media/46b95b0ec58274621935463cd534f793.jpg?compress=1&resize=1600x1200"
+              alt=""
+              class="post-image"
+            />
+          </a>
+          <a href="#" class="post-category">Shop</a>
+          <h3>
+            <a href="#" class="post-title"
+              >How to choose best bike for spring in Australia</a
+            >
+          </h3>
+          <p class="post-desc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            at quae architecto perspiciatis dolore deleniti, voluptas aperiam
+            dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
+            nostrum quae.
+          </p>
+          <a href="#" class="post-author">
+            <img
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
+              alt=""
+              class="post-author-image"
+            />
+            <div class="post-author-info">
+              <h4 class="post-author-name">By Sebastian</h4>
+              <time class="post-author-time">Just now</time>
             </div>
-            <div class="post-content">
-              <a href="#" class="post-title">Lorem ipsum dolor sit amet.</a>
-              <div class="post-info">
-                <a href="#" class="post-category">the thao</a>
-                <span class="post-date">2021-04-10</span>
-                <span class="post-author">Admin</span>
-              </div>
-              <p class="post-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                voluptates, quod, quia, voluptatibus quae voluptatem quas
-                consequuntur quibusdam quidem voluptatum quos. Quisquam, quae
-                voluptas. Quisquam, quae voluptas.
-              </p>
-              <a href="#" class="post-link">Read More</a>
-            </div>
-          </div>
+          </a>
         </div>
-        <div class="post-new-right">
-          <div class="post-item">
-            <div class="post-image">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/my-blogging-8826d.appspot.com/o/images%2F5f44d4298582b.jpg?alt=media&token=20d538a3-dd83-4963-bf36-8605df8b5253"
-                alt=""
-              />
+        <div class="post-item">
+          <a href="#" class="post-media">
+            <img
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
+              alt=""
+              class="post-image"
+            />
+          </a>
+          <a href="#" class="post-category">Shop</a>
+          <h3>
+            <a href="#" class="post-title"
+              >How to choose best bike for spring in Australia</a
+            >
+          </h3>
+          <p class="post-desc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            at quae architecto perspiciatis dolore deleniti, voluptas aperiam
+            dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
+            nostrum quae.
+          </p>
+          <a href="#" class="post-author">
+            <img
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
+              alt=""
+              class="post-author-image"
+            />
+            <div class="post-author-info">
+              <h4 class="post-author-name">By Sebastian</h4>
+              <time class="post-author-time">Just now</time>
             </div>
-            <div class="post-content">
-              <a href="#" class="post-title">Lorem ipsum dolor sit amet.</a>
-              <div class="post-info">
-                <a href="#" class="post-category">the thao</a>
-                <span class="post-date">2021-04-10</span>
-                <span class="post-author">Admin</span>
-              </div>
-              <p class="post-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                voluptates, quod, quia, voluptatibus quae voluptatem quas
-                consequuntur quibusdam quidem voluptatum quos. Quisquam, quae
-                voluptas. Quisquam, quae voluptas.
-              </p>
-              <a href="#" class="post-link">Read More</a>
+          </a>
+        </div>
+        <div class="post-item">
+          <a href="#" class="post-media">
+            <img
+              src="https://cdn.dribbble.com/users/486985/screenshots/15329016/media/de4829c5298afd8ed930e796154e276a.jpg?compress=1&resize=1600x1200"
+              alt=""
+              class="post-image"
+            />
+          </a>
+          <a href="#" class="post-category">Shop</a>
+          <h3>
+            <a href="#" class="post-title"
+              >How to choose best bike for spring in Australia</a
+            >
+          </h3>
+          <p class="post-desc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+            at quae architecto perspiciatis dolore deleniti, voluptas aperiam
+            dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
+            nostrum quae.
+          </p>
+          <a href="#" class="post-author">
+            <img
+              src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
+              alt=""
+              class="post-author-image"
+            />
+            <div class="post-author-info">
+              <h4 class="post-author-name">By Sebastian</h4>
+              <time class="post-author-time">Just now</time>
             </div>
-          </div>
-          <div class="post-item">
-            <div class="post-image">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/my-blogging-8826d.appspot.com/o/images%2F5f44d4298582b.jpg?alt=media&token=20d538a3-dd83-4963-bf36-8605df8b5253"
-                alt=""
-              />
-            </div>
-            <div class="post-content">
-              <a href="#" class="post-title">Lorem ipsum dolor sit amet.</a>
-              <div class="post-info">
-                <a href="#" class="post-category">the thao</a>
-                <span class="post-date">2021-04-10</span>
-                <span class="post-author">Admin</span>
-              </div>
-              <p class="post-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                voluptates, quod, quia, voluptatibus quae voluptatem quas
-                consequuntur quibusdam quidem voluptatum quos. Quisquam, quae
-                voluptas. Quisquam, quae voluptas.
-              </p>
-              <a href="#" class="post-link">Read More</a>
-            </div>
-          </div>
-          <div class="post-item">
-            <div class="post-image">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/my-blogging-8826d.appspot.com/o/images%2F5f44d4298582b.jpg?alt=media&token=20d538a3-dd83-4963-bf36-8605df8b5253"
-                alt=""
-              />
-            </div>
-            <div class="post-content">
-              <a href="#" class="post-title">Lorem ipsum dolor sit amet.</a>
-              <div class="post-info">
-                <a href="#" class="post-category">the thao</a>
-                <span class="post-date">2021-04-10</span>
-                <span class="post-author">Admin</span>
-              </div>
-              <p class="post-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                voluptates, quod, quia, voluptatibus quae voluptatem quas
-                consequuntur quibusdam quidem voluptatum quos. Quisquam, quae
-                voluptas. Quisquam, quae voluptas.
-              </p>
-              <a href="#" class="post-link">Read More</a>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
+      </div>
     </div>
+    <?php include 'footer.php' ?>
     <script src="./js/main.js"></script>
   </body>
 </html>
