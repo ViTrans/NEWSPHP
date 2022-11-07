@@ -1,13 +1,41 @@
 <?php
 include './func/connect.php';
-include './func/funcs.php';
 $err = [];
+$folder_path = '../uploads/';
+$file_path =  $folder_path . basename($_FILES['avatar']['name']);
+$flag_ok = true;
+$file_type = strtolower(pathinfo($file_path,PATHINFO_EXTENSION));
+if(isset($_POST["username"])) {
+    $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+    if($check !== false) {
+      echo "File is an image - " . $check["mime"] . ".";
+        $flag_ok = true;
+      
+    } else {
+      echo "File is not an image.";
+        $flag_ok = false;
+      
+    }
+  }
+$ex = array('jpg','png','jpeg');
+if(!in_array($file_type,$ex)){
+    $err['avatar'] = 'File không đúng định dạng';
+    $flag_ok = false;
+}
+if($_FILES['avatar']['size'] > 900000){
+    $err['avatar'] = 'File quá lớn';
+    $flag_ok = false;
+}
+if($flag_ok){
+    move_uploaded_file($_FILES['avatar']['tmp_name'],$file_path);
+}
 if(isset($_POST['username'])){
   $username = $_POST['username'];
   $email = $_POST['email'];
   $password = $_POST['password'];
   $rpassword = $_POST['rpassword'];
-  $birthday = $_POST['birthday'];
+
+//   $birthday = $_POST['birthday'];
   $gender = $_POST['gender'];
   if(empty($username)){
     $err['username'] = 'vui lòng nhập tên tài khoản';
@@ -18,23 +46,21 @@ if(isset($_POST['username'])){
   if(empty($password)){
     $err['password'] = 'vui lòng nhập mật khẩu';
   }
-  if(empty($birthday)){
-    $err['birthday'] = 'vui lòng nhập ngày sinh';
-  }
+//   if(empty($birthday)){
+//     $err['birthday'] = 'vui lòng nhập ngày sinh';
+//   }
   if($password != $rpassword){
     $err['rpassword'] = 'mật khẩu nhập lại không đúng';
   }
     if(empty($err)){
         $pass = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO `user` (`id`, `username`, `password`, `email`, `avatar`, `gender`, `birthday`, `level`) VALUES (NULL, '$username', '$pass', '$email', '', '$gender', '$birthday', '0');";
+        $sql = "INSERT INTO `users` (`id`, `email`, `username`, `password`, `gender`, `status`, `avatar`) VALUES (NULL, '$email', '$username', '$pass', '$gender', '0', '');";
       $query = mysqli_query($con, $sql);
       if($query){
         header("Location: ./login.php");
       }
     }
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +86,7 @@ if(isset($_POST['username'])){
         <section class="login container">
             <div class="signup-main">
                 <h3 class="headding">Đăng Ký</h3>
-                <form class="form-sign" action="" method="POST" autocomplete="off">
+                <form class="form-sign" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
                     <div class="text-field">
                         <label for="username">Tên Tài Khoản</label>
                         <input name="username" autocomplete="off" type="text" id="username"
@@ -91,7 +117,8 @@ if(isset($_POST['username'])){
                         <span class="error"><?php echo (isset($err['birthday']))? $err['birthday'] : '' ?></span>
                     </div>
                     <div class="text-field">
-                        <input type="file" />
+                        <input type="file" name="avatar" />
+                        <?php echo (isset($err['avatar']))? $err['avatar'] : '' ?>
                     </div>
                     <div class="text-field">
                         <label for="gender">Giới Tính</label>

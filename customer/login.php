@@ -1,6 +1,7 @@
 <?php
 // login 
 include './func/connect.php';
+include './func/funcs.php';
 session_start();
 $err = []; // tạo mảng lưu lỗi
 if(isset($_POST['email'])){ // kiểm tra xem có click vào nút đăng ký hay không
@@ -13,7 +14,7 @@ if(isset($_POST['email'])){ // kiểm tra xem có click vào nút đăng ký hay
     $err['password'] = 'vui lòng nhập mật khẩu';
   }
   if(empty($err)){ // nếu mảng lỗi rỗng thì thực hiện đăng ký
-    $sql = "SELECT * FROM `user` WHERE `email` = '$email'";
+    $sql = "SELECT * FROM `users` WHERE `email` = '$email'";
     $query = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($query);
     $checkEmail = mysqli_num_rows($query);

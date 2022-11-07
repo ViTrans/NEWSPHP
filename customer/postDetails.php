@@ -1,9 +1,11 @@
 <?php
 include './func/connect.php';
 include './func/funcs.php';
+session_start();
 $id = $_GET['id'];
 $result = getPostById($con,$id);
 $row = mysqli_fetch_assoc($result);
+$re = getCategory($con);
 
 
 ?>
@@ -27,18 +29,17 @@ $row = mysqli_fetch_assoc($result);
         <div class="post-header-main">
             <div class="post-item">
                 <a href="#" class="post-media">
-                    <img src="<?php echo $row['image']?>" alt="" class="post-image" />
+                    <img src="<?php echo $row['img']?>" alt="" class="post-image" />
                 </a>
-                <a href="#" class="post-category">Shop</a>
+                <a href="#" class="post-category"><?php echo $row['category_name']?></a>
                 <h3>
                     <a href="#" class="post-title"><?php echo $row['title']?></a>
                 </h3>
                 <a href=" #" class="post-author">
-                    <img src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
-                        alt="" class="post-author-image" />
+                    <img src="<?php echo $row['user_avatar']?>" alt="" class="post-author-image" />
                     <div class="post-author-info">
-                        <h4 class="post-author-name">By Sebastian</h4>
-                        <time class="post-author-time">Just now</time>
+                        <h4 class="post-author-name"><?php echo $row['user_name']?></h4>
+                        <time class="post-author-time"><?php echo $row['created_at']?></time>
                     </div>
                 </a>
             </div>

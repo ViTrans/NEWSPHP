@@ -3,6 +3,7 @@ include_once 'func/connect.php';
 include_once 'func/funcs.php';
 session_start();
 $result = getPost($con);
+$re = getCategory($con);
 ?>
 <!DOCTYPE html>
 <html lang="en">

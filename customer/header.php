@@ -19,15 +19,11 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
             <li class="menu-item">
                 <a href="#" class="menu-link">Tin Tức <i class="fa-solid fa-sort-down"></i></a>
                 <ul>
+                    <?php foreach ($re as $key => $value) : ?>
                     <li>
-                        <a href="">Bóng Đá</a>
+                        <a href="category.php?id=<?php echo $value['id'] ?>"><?php echo $value['title'] ?></a>
                     </li>
-                    <li>
-                        <a href="">Bóng Đá</a>
-                    </li>
-                    <li>
-                        <a href="">Bóng Đá</a>
-                    </li>
+                    <?php endforeach; ?>
                 </ul>
             </li>
         </ul>
