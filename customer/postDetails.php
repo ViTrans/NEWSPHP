@@ -1,7 +1,5 @@
 <?php
 include './func/connect.php';
-include './func/funcs.php';
-session_start();
 $id = $_GET['id'];
 $result = getPostById($con,$id);
 $row = mysqli_fetch_assoc($result);
@@ -24,7 +22,6 @@ $re = getCategory($con);
 </head>
 
 <body>
-    <?php include './header.php' ?>
     <div class="container">
         <div class="post-header-main">
             <div class="post-item">
@@ -36,9 +33,9 @@ $re = getCategory($con);
                     <a href="#" class="post-title"><?php echo $row['title']?></a>
                 </h3>
                 <a href=" #" class="post-author">
-                    <img src="<?php echo $row['user_avatar']?>" alt="" class="post-author-image" />
+                    <!-- <img src=<?php echo "../uploads/" . $row['user_avatar']?> class="post-author-image" /> -->
                     <div class="post-author-info">
-                        <h4 class="post-author-name"><?php echo $row['user_name']?></h4>
+                        <!-- <h4 class="post-author-name"><?php echo $row['user_name']?></h4> -->
                         <time class="post-author-time"><?php echo $row['created_at']?></time>
                     </div>
                 </a>
@@ -129,7 +126,6 @@ $re = getCategory($con);
             </div>
         </div>
     </div>
-    <?php include 'footer.php'; ?>
 </body>
 
 </html>

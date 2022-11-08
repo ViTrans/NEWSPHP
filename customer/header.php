@@ -21,7 +21,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
                 <ul>
                     <?php foreach ($re as $key => $value) : ?>
                     <li>
-                        <a href="category.php?id=<?php echo $value['id'] ?>"><?php echo $value['title'] ?></a>
+                        <a href="?url=category.php&id=<?php echo $value['id'] ?>"><?php echo $value['title'] ?></a>
                     </li>
                     <?php endforeach; ?>
                 </ul>
@@ -30,8 +30,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
         <div class="account">
             <?php if (!empty($user['email'])) { ?>
             <div class="account-img">
-                <img src="https://images.unsplash.com/photo-1666904093866-bacfa77008f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                    alt="" />
+                <img src=<?php echo "../uploads/" . $user['avatar'] ?> alt="" />
                 <ul>
                     <li>
                         <a href="./profile.php">Thông tin cá nhân</a>
