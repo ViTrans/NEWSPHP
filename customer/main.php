@@ -1,64 +1,65 @@
 <?php include './hero.php';
 $re = getFeaturedPost($con);
+
+$row = mysqli_fetch_all($re, MYSQLI_ASSOC);
+// echo '<pre>';
+// var_dump($row[3]);
+// echo '</pre>';
 ?>
 <div class="container">
     <h2 class="heading">
         Bài Viết Nổi Bật
     </h2>
     <div class="post-feature">
-        <?php while($row = mysqli_fetch_assoc($re)) { ?>
-        <a href="#" class="post-feature-media post-media">
-            <img src="<?php echo $row['img']?>" alt="" class="post-feature-image" />
+        <a href="?url=postDetails.php&id=<?php echo $row[0]['id']?>" class="post-feature-media post-media">
+            <img src="<?php echo $row[0]['img'] ?>" alt="" class="post-feature-image" />
         </a>
         <div class="post-feature-info">
-            <a href="#" class="post-category">The newest</a>
+            <a href="?url=category.php&id=<?php echo $row[0]['category_id']?>"
+                class="post-category"><?php echo $row[0]['category_name']?></a>
             <h2>
-                <a href="#"
-                    class="post-feature-title post-title">HowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmmHowmmmm</a>
+                <a href="?url=postDetails.php&id=<?php echo $row[0]['id']?>"
+                    class="post-feature-title post-title"><?= $row[0]['title'] ?></a>
             </h2>
             <p class="post-desc">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur
-                quas distinctio, quis minima magni sint accusamus! Aliquid
-                distinctio unde porro adipisci totam itaque, laudantium natus!
-                Repudiandae perferendis mollitia ipsam repellendus.
+                <?= $row[0]['description'] ?>
             </p>
             <a href="#" class="post-author">
-                <img src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
-                    alt="" class="post-author-image" />
                 <div class="post-author-info">
-                    <h4 class="post-author-name">By Sebastian</h4>
-                    <time class="post-author-time">Just now</time>
+                    <time class="post-author-time">Ngày Tạo:
+                        <?= date("d-m-Y",strtotime($row[0]['created_at'])) ?></time>
                 </div>
             </a>
         </div>
-        <?php } ?>
+
     </div>
     <div class="post-list">
+        <?php for ($i = 1; $i < count($row); $i++) : ?>
+
+
         <div class="post-item">
-            <a href="#" class="post-media">
-                <img src="<?php echo $row['img']?>" alt="" class="post-image" />
+            <a href="?url=postDetails.php&id=<?php echo $row[$i]['id']?>" class="post-media">
+                <img src="<?php echo $row[$i]['img'] ?>" alt="" class="post-image" />
             </a>
-            <a href="#" class="post-category">Shop</a>
+            <a href="?url=category.php&id=<?php echo $row[$i]['category_id']?>"
+                class="post-category"><?= $row[$i]['category_name']?></a>
             <h3>
-                <a href="#" class="post-title">How to choose best bike for spring in Australia</a>
+                <a href="?url=postDetails.php&id=<?php echo $row[$i]['id']?>"
+                    class="post-title"><?= $row[$i]['title'] ?></a>
             </h3>
             <p class="post-desc">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-                at quae architecto perspiciatis dolore deleniti, voluptas aperiam
-                dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
-                nostrum quae.
+                <?= $row[$i]['description'] ?>
             </p>
             <a href="#" class="post-author">
-                <img src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
-                    alt="" class="post-author-image" />
                 <div class="post-author-info">
-                    <h4 class="post-author-name">By Sebastian</h4>
-                    <time class="post-author-time">Just now</time>
+                    <time class="post-author-time">Ngày Tạo:
+                        <?= date("d-m-Y",strtotime($row[$i]['created_at'])) ?></time>
                 </div>
             </a>
         </div>
+        <?php endfor; ?>
     </div>
-    <?php 
-            include './postNews.php';
-         ?>
+    <?php
+    include './postNews.php';
+    ?>
 </div>

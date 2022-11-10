@@ -5,16 +5,11 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
 <header>
     <div class="navbar">
         <a href="#" class="logo">
-            <!-- <img
-            src="https://images.unsplash.com/photo-1666946095494-a31ef4e58450?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt=""
-            class="logo-image"
-          /> -->
             NEWS
         </a>
         <ul class="menu">
             <li class="menu-item">
-                <a href="index.php" class="menu-link">Trang Chủ</a>
+                <a href="index.php" <?php if($page == 'index.php'){ echo 'class="menu-link active"';}?>>Trang Chủ</a>
             </li>
             <li class="menu-item">
                 <a href="#" class="menu-link">Tin Tức <i class="fa-solid fa-sort-down"></i></a>
@@ -32,9 +27,6 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
             <div class="account-img">
                 <img src=<?php echo "../uploads/" . $user['avatar'] ?> alt="" />
                 <ul>
-                    <li>
-                        <a href="./profile.php">Thông tin cá nhân</a>
-                    </li>
                     <li>
                         <a href="./logout.php">Đăng Xuất</a>
                     </li>

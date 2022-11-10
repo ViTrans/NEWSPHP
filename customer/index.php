@@ -30,6 +30,7 @@ $re = getCategory($con);
         }
         elseif($page == 'index.php'){
             include './main.php';
+            include './footer.php';
         }
         ?>
     <script src="./js/main.js"></script>

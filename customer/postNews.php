@@ -20,10 +20,8 @@
                 <?php echo $row['description']?>
             </p>
             <a href="#" class="post-author">
-                <!-- <img src=<?php echo "../uploads/" . $row['user_avatar']?> class="post-author-image" /> -->
                 <div class="post-author-info">
-                    <!-- <h4 class="post-author-name"><?php echo $row['user_name']?></h4> -->
-                    <time class="post-author-time"><?php echo $row['created_at'] ?></time>
+                    <time class="post-author-time">Ngày Tạo: <?= date("d-m-Y",strtotime($row['created_at'])) ?></time>
                 </div>
             </a>
         </div>
