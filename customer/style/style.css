@@ -457,6 +457,7 @@ footer {
 /* post comment */
 .post-comment {
   max-width: 1000px;
+  padding: 0 15px;
   margin: 100px auto;
 }
 .post-comment__heading {
@@ -500,11 +501,12 @@ footer {
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   flex: 1;
+  position: relative;
 }
 .post-comment__list .post-comment__item__content__info {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
   margin-bottom: 1rem;
 }
 .post-comment__list .post-comment__item__content__info .name {
@@ -521,9 +523,24 @@ footer {
   border: none;
   color: white;
   background-color: #ff6464;
-  padding: 15px 20px;
+  padding: 15px 30px;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  display: block;
+  margin-left: auto;
+}
+.post-comment__action {
+  padding: 15px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.post-comment__action a {
+  color: #ff6464;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 1rem;
 }

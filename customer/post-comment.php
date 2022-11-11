@@ -14,6 +14,7 @@ if(isset($_SESSION['user'])){
     }
 }
 $re = getCommentByPostId($con,$_GET['id']);
+
 ?>
 <div class="post-comment">
     <div class="post-comment__heading">
@@ -30,7 +31,8 @@ $re = getCommentByPostId($con,$_GET['id']);
         </form>
     </div>
     <div class="post-comment__list">
-        <?php foreach ($re as $key => $value) : ?>
+        <?php foreach ($re as $key =>
+    $value) : ?>
         <div class="post-comment__item">
             <div class="post-comment__item__avatar">
                 <img src="<?php echo "../uploads/" . $value['avatar']?>" alt="">
@@ -38,10 +40,16 @@ $re = getCommentByPostId($con,$_GET['id']);
             <div class="post-comment__item__content">
                 <div class="post-comment__item__content__info">
                     <h4 class="name"><?php echo $value['user_name']?></h4>
-                    <time class="date"><?= date("d-m-Y",strtotime($row['created_at']))?></time>
+                    <time class="date"><?= date("d-m-Y",strtotime($value['created_at']))?></time>
                 </div>
                 <div class="post-comment__item__content__text">
                     <?php echo $value['content']?>
+                </div>
+                <div class="post-comment__action">
+                    <?php if(isset($_SESSION['user']) && $_SESSION['user']['id'] == $value['user_id']){ ?>
+                    <a
+                        href="?url=deletecomment.php&id=<?php echo $value['id']?>&postdetails=<?=$value['post_id'] ?>">Xóa</a>
+                    <?php } ?>
                 </div>
             </div>
         </div>

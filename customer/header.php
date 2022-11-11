@@ -9,7 +9,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
         </a>
         <ul class="menu">
             <li class="menu-item">
-                <a href="index.php" <?php if($page == 'index.php'){ echo 'class="menu-link active"';}?>>Trang Chủ</a>
+                <a href="index.php" class="menu-link">Trang Chủ</a>
             </li>
             <li class="menu-item">
                 <a href="#" class="menu-link">Tin Tức <i class="fa-solid fa-sort-down"></i></a>

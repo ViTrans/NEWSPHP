@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once "../config.php";
+require_once "../connect.php";
+require_once './functions.php';
+
+if (!isset($_SESSION['admin'])) {
+    echo "<script>window.location.href='index.php'</script>";
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,32 +34,32 @@
         <div class="menu-left">
             <ul>
                 <li>
-                    <a href="index.php" class="menu-link">
+                    <a href="dashboard.php" class="menu-link">
                         <i class="fa-solid fa-gauge-high"></i>
                         <span>Thống kê</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="menu-link">
+                    <a href="?page=danhsachdanhmuc" class="menu-link">
                         <i class="fa-solid fa-rectangle-list"></i>
                         <span>Danh mục</span>
                     </a>
                 </li>
                 <li>
-                    <a href="post.php" class="menu-link">
+                    <a href="?page=danhsachbaiviet" class="menu-link">
                         <i class="fa-sharp fa-solid fa-book"></i>
                         <span>Bài viết</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="menu-link">
+                    <a href="?page=danhsachthanhvien" class="menu-link">
                         <i class="fa-solid fa-person-military-pointing"></i>
-                        <span>Khách hàng</span>
+                        <span>Thành Viên</span>
                     </a>
                 </li>
             </ul>
             <div class="logout">
-                <a href="#">
+                <a href="logout.php">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Đăng xuất</span></a>
             </div>
@@ -57,7 +69,7 @@
         <div class="top-header">
             <i class="fa-solid fa-bars" id="bar_btn"></i>
             <div class="avatar">
-                <h2>Anh Tuấn</h2>
+                <h2><?= $_SESSION['admin']['username'] ?></h2>
                 <img src="./images/avatar.png" alt="" />
             </div>
         </div>
