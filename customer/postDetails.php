@@ -22,9 +22,9 @@ $re = getCategory($con);
         </a>
     </div>
     <div class="post-details-content">
-        <p class="post-content-item">
-            <?php echo $row['description']?>
-        </p>
+        <div class="post-content-item">
+            <?php echo html_entity_decode($row['description']) ?>
+        </div>
     </div>
 </div>
 <?php include './post-comment.php'?>

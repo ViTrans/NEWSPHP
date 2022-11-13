@@ -16,9 +16,9 @@
                 <a href="?url=postDetails.php&id=<?php echo $row['id']?>"
                     class="post-title"><?php echo $row['title']?></a>
             </h3>
-            <p class="post-desc">
-                <?php echo $row['description']?>
-            </p>
+            <div class="post-desc">
+                <?php echo html_entity_decode($row['description'])?>
+            </div>
             <a href="#" class="post-author">
                 <div class="post-author-info">
                     <time class="post-author-time">Ngày Tạo: <?= date("d-m-Y",strtotime($row['created_at'])) ?></time>

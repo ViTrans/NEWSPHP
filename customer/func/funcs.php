@@ -26,5 +26,13 @@ function getCommentByPostId($con,$id){
     $sql = "SELECT *, (SELECT username FROM users WHERE users.id = comments.user_id) AS user_name ,(SELECT avatar FROM users WHERE users.id = comments.user_id) AS avatar FROM comments WHERE post_id = $id";
     return mysqli_query($con,$sql);
 }
+function getProfile($con,$id){
+    $sql = "SELECT * FROM users WHERE id = $id";
+    return mysqli_query($con,$sql);
+}
+function editProfile($con,$id,$username,$email,$avatar){
+    $sql = "UPDATE users SET username = '$username', email = '$email', avatar = '$avatar' WHERE id = $id";
+    return mysqli_query($con,$sql);
+}
 
 ?>

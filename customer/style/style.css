@@ -6,7 +6,6 @@
 * {
   margin: 0;
   padding: 0;
-  font: inherit;
 }
 body {
   line-height: 1.5;
@@ -139,7 +138,7 @@ body {
   top: 70%;
   right: 5px;
   width: 10%;
-  transform: translateY(20%);
+  transform: translateY(10%);
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1;
@@ -173,6 +172,7 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .slider {
   width: 100%;
@@ -296,8 +296,17 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  max-width: 100%;
   word-break: break-word;
+}
+.post-desc h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .post-author {
@@ -408,14 +417,39 @@ footer {
 .post-header-main .post-item .post-category {
   width: 100%;
 }
-.post-header-main .post-details-content {
-  max-width: 960px;
+.post-details-content {
   margin-left: auto;
   margin-right: auto;
+  max-width: 900px;
 }
-.post-header-main .post-content-item {
+.post-details-content .post-content-item p {
+  margin-bottom: 1rem;
   line-height: 2;
-  word-break: break-all;
+  word-break: break-word;
+}
+.post-details-content .post-content-item h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.post-details-content .post-content-item h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.post-details-content .post-content-item h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.post-details-content .post-content-item h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.post-details-content .post-content-item ul {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
 }
 @media screen and (max-width: 1023px) {
   .navbar {
@@ -452,6 +486,10 @@ footer {
   }
   .post-header-main .post-item .post-image {
     height: 100%;
+  }
+  .post-details-content {
+    max-width: 100%;
+    padding: 0 15px;
   }
 }
 /* post comment */
@@ -543,4 +581,45 @@ footer {
   font-weight: 600;
   text-decoration: none;
   margin-left: 1rem;
+}
+.profile-main {
+  max-width: 1000px;
+  padding: 0 15px;
+  margin: 100px auto;
+}
+.profile-main .headding {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.form-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-profile .text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.form-profile .text-field label {
+  font-size: 16px;
+  font-weight: 600;
+}
+.form-profile .text-field input {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+}
+.form-profile button {
+  border: none;
+  color: white;
+  background-color: #ff6464;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
 }

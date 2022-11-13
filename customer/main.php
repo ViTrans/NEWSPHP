@@ -21,9 +21,9 @@ $row = mysqli_fetch_all($re, MYSQLI_ASSOC);
                 <a href="?url=postDetails.php&id=<?php echo $row[0]['id']?>"
                     class="post-feature-title post-title"><?= $row[0]['title'] ?></a>
             </h2>
-            <p class="post-desc">
-                <?= $row[0]['description'] ?>
-            </p>
+            <div class="post-desc">
+                <?=  html_entity_decode( $row[0]['description']) ?>
+            </div>
             <a href="#" class="post-author">
                 <div class="post-author-info">
                     <time class="post-author-time">Ngày Tạo:
@@ -31,12 +31,9 @@ $row = mysqli_fetch_all($re, MYSQLI_ASSOC);
                 </div>
             </a>
         </div>
-
     </div>
     <div class="post-list">
         <?php for ($i = 1; $i < count($row); $i++) : ?>
-
-
         <div class="post-item">
             <a href="?url=postDetails.php&id=<?php echo $row[$i]['id']?>" class="post-media">
                 <img src="<?php echo $row[$i]['img'] ?>" alt="" class="post-image" />
@@ -47,9 +44,9 @@ $row = mysqli_fetch_all($re, MYSQLI_ASSOC);
                 <a href="?url=postDetails.php&id=<?php echo $row[$i]['id']?>"
                     class="post-title"><?= $row[$i]['title'] ?></a>
             </h3>
-            <p class="post-desc">
-                <?= $row[$i]['description'] ?>
-            </p>
+            <div class="post-desc">
+                <?= html_entity_decode($row[$i]['description']) ?>
+            </div>
             <a href="#" class="post-author">
                 <div class="post-author-info">
                     <time class="post-author-time">Ngày Tạo:

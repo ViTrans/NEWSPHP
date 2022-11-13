@@ -60,24 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($description)) {
         $errors['description'] = "vui lòng nhập mô tả bài viết";
-    } else {
-        $pattern = "/^.{500,}$/u";
-        if (!preg_match($pattern, $description)) $errors['description'] = "Mô tả phải ít nhất 500 kí tự ^^";
     }
 
     if (empty($title)) {
         $errors['title'] = "vui lòng nhập tên bài viết";
-    } else {
-        $pattern = "/^[^\d\s\~\^\@\/\#\$\*\{\}\!-\.\:\;\?\>\<\+\[\]\=]{2}[\w\s]{0,48}$/u";
-        if (!preg_match($pattern, $title)) {
-            $errors['title'] = "tên bài viết không hợp lệ";
-        } else {
-            $row =  getWhere("posts", "title = '$title'", ['title'])->num_rows;
-            if ($row > 0) {
-                $errors['title'] = "tên bài viết đã tồn tại";
-            }
-        }
-    }
+    };
 
 
 
@@ -114,7 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php
                         while ($cate = mysqli_fetch_assoc($categories)) :
                         ?>
-                            <option <?= $result['cate_id'] == $cate['id'] ? "selected" : false ?> value="<?= $cate['id'] ?>"><?= $cate['title'] ?></option>
+                        <option <?= $result['cate_id'] == $cate['id'] ? "selected" : false ?>
+                            value="<?= $cate['id'] ?>"><?= $cate['title'] ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>
@@ -124,7 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label class="form-label">Tên bài viết <span>*</span></label>
-                    <input value="<?= $result["title"] ?>" class="form-input" name="title" type="text" placeholder="Tên bài viết..." />
+                    <input value="<?= $result["title"] ?>" class="form-input" name="title" type="text"
+                        placeholder="Tên bài viết..." />
                 </div>
                 <div class="form-group spacing">
                     <span class="form-label">&nbsp;</span>
@@ -174,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 </main>
 <script>
-    CKEDITOR.replace("editor");
+CKEDITOR.replace("editor");
 </script>
 </body>
 

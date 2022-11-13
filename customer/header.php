@@ -28,6 +28,9 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
                 <img src=<?php echo "../uploads/" . $user['avatar'] ?> alt="" />
                 <ul>
                     <li>
+                        <a href="?url=profile.php&id=<?php echo $_SESSION['user']['id'] ?>">Thông tin cá nhân</a>
+                    </li>
+                    <li>
                         <a href="./logout.php">Đăng Xuất</a>
                     </li>
                 </ul>
