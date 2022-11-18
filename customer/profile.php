@@ -34,18 +34,20 @@ if(isset($_POST['username'])){
     }
     }
     // update profile
-
     if(isset($_POST['username'])){
         $username = $_POST['username'];
         $email = $_POST['email'];
         $avatar = $_FILES['avatar']['name'];
         $birthday = $_POST['birthday'];
-        $sql = "UPDATE users SET username = '$username', email = '$email', avatar = '$avatar', birthday = '$birthday' WHERE id = '$id'";
+        $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
+        $sql = "UPDATE users SET username = '$username', email = '$email', avatar = '$avatar', birthday = '$birthday', password = '$password' WHERE id = '$id'";
         $re = mysqli_query($con,$sql);
         if($re){
             $_SESSION['user']['username'] = $username;
             $_SESSION['user']['email'] = $email;
             $_SESSION['user']['avatar'] = $avatar;
+            $_SESSION['user']['birthday'] = $birthday;
+            $_SESSION['user']['password'] = $password;
             header('location:?url=profile.php&id='.$id);
         }
     }
@@ -68,13 +70,13 @@ if(isset($_POST['username'])){
                         value="<?php echo $row['email']?>" />
                     <span class="error"><?php echo (isset($err['email']))? $err['email'] : '' ?></span>
                 </div>
-                <!-- <div class="text-field">
+                <div class="text-field">
                     <label for="password">Mật Khẩu</label>
-                    <input name="password" autocomplete="off" type="password" id="password"
-                        placeholder="Nhập Mật Khẩu" />
+                    <input name="password" autocomplete="off" type="password" id="password" placeholder="Nhập Mật Khẩu"
+                        value="<?= $row['password']?>" />
                     <span class="error"><?php echo (isset($err['password']))? $err['password'] : '' ?></span>
                 </div>
-                <div class="text-field">
+                <!-- <div class="text-field">
                     <label for="rpassword">Nhập Lại Mật Khẩu</label>
                     <input name="rpassword" autocomplete="off" type="password" id="rpassword"
                         placeholder="Nhập Lại Mật Khẩu" />
@@ -87,6 +89,7 @@ if(isset($_POST['username'])){
                     <span class="error"><?php echo (isset($err['birthday']))? $err['birthday'] : '' ?></span>
                 </div>
                 <div class="text-field">
+                    <label for="avatar">Ảnh Đại Diện</label>
                     <input type="file" name="avatar" value="<?php echo $row['avatar']?>" />
                     <?php echo (isset($err['avatar']))? $err['avatar'] : '' ?>
                 </div>

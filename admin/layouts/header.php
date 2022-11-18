@@ -21,14 +21,18 @@ if (!isset($_SESSION['admin'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.ckeditor.com/4.20.0/standard-all/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.2/full-all/ckeditor.js"></script>
     <script defer src="./js/main.js"></script>
     <link rel="stylesheet" href="css/style.css" />
-    <title>trang thống kê</title>
+    <title>Trang thống kê</title>
 </head>
 
+<div>
+
+</div>
+
 <body>
-    <div class="sidebar collapse">
+    <div class="sidebar">
         <div class="infor">
             <h2>Admin <span>Panel</span></h2>
         </div>
@@ -36,27 +40,23 @@ if (!isset($_SESSION['admin'])) {
         <div class="menu-left">
             <ul>
                 <li>
-                    <a href="dashboard.php" class="menu-link">
+                    <a href="dashboard.php" class="menu-link <?= $_GET['page'] ?? 'active' ?>">
                         <i class="fa-solid fa-gauge-high"></i>
                         <span>Thống kê</span>
                     </a>
                 </li>
                 <li>
-                    <a href="?page=danhsachdanhmuc" class="menu-link">
+                    <a href="?page=danhsachdanhmuc"
+                        class="menu-link <?= (isset($_GET['page']) && $_GET['page'] == 'danhsachdanhmuc') ? 'active' : '' ?>">
                         <i class="fa-solid fa-rectangle-list"></i>
                         <span>Danh mục</span>
                     </a>
                 </li>
                 <li>
-                    <a href="?page=danhsachbaiviet" class="menu-link">
+                    <a href="?page=danhsachbaiviet"
+                        class="menu-link <?= (isset($_GET['page']) && $_GET['page'] == 'danhsachbaiviet') ? 'active' : '' ?>">
                         <i class="fa-sharp fa-solid fa-book"></i>
                         <span>Bài viết</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="?page=danhsachthanhvien" class="menu-link">
-                        <i class="fa-solid fa-person-military-pointing"></i>
-                        <span>Thành Viên</span>
                     </a>
                 </li>
             </ul>

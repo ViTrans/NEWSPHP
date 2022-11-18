@@ -5,21 +5,43 @@ require_once "../connect.php";
 require_once './functions.php';
 
 
+// nếu đã đăng nhập ròi thì 
+// dô trang ADMIN luôn vào trang login làm gì
+if (isset($_SESSION['admin'])) {
+  header("Location: dashboard.php");
+}
+//==========================================
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $email = $_POST['email'];
+  // lấy mk người dùng nhập mã hóa MD5
+  $password = md5($_POST['password']);
 
-  $email = filterPost("email");
-  $password = filterPost("password");
-  $check = handelLoginForm($email, $password);
-
-  if (is_array($check)) {
-    setMsg("login", "bạn đã đăng nhập thành không ^^^");
-    $_SESSION['admin'] = $check;
-    header("Location: dashboard.php");
+  $error = "";
+  if (empty($email) or empty($password)) {
+    $error = "Vui lòng nhập email or password";
   } else {
-    setMsg("login", $check, 'error');
-    $alert = displayMsg("login");
+
+    $sql = "SELECT * FROM `admin` WHERE email = '$email' and password = '$password' ";
+
+    // doi toi result
+    $result = mysqli_query($con, $sql);
+
+    // reuslt là đối tượng của hàm mysql query ;
+    // num_rows là thuộc tính 
+    if ($result->num_rows > 0) {
+      $kq =  mysqli_fetch_array($result);
+      $_SESSION['admin'] = [
+        "username" => $kq['username'],
+        "avatar" => $kq['avatar'],
+      ];
+      header("Location: dashboard.php");
+    } else {
+      $error = "Tài khoản hoặc mật khẩu không chính xác";
+    }
   }
 }
+
 
 
 ?>
@@ -33,61 +55,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .alert {
-      position: relative;
-      font-size: 18px;
-      font-weight: 500;
-      padding: 10px 15px;
-      width: 100%;
-      border-radius: 8px;
-      transition: var(--smooth);
-    }
-
-    .alert>span {
-      position: absolute;
-      font-size: 22px;
-      cursor: pointer;
-      font-weight: 700;
-      top: 50%;
-      right: 3%;
-      transform: translateY(-50%);
-    }
-
-    .alert.alert-success {
-      color: #0f5132;
-      background-color: #d1e7dd;
-    }
-
-    .alert.alert-error {
-      color: #842029;
-      background-color: #f8d7da;
-    }
-  </style>
-  <script defer src="./js/main.js"></script>
-
-  <title>login ADMIN</title>
+  <link rel="stylesheet" href="./css/login.css">
+  <title>Login ADMIN</title>
 </head>
 
 <body>
-
-  <form action="" method="post">
-    <!-- đăng nhập thất bại -->
-    <?= $alert ?? ""; ?>
-    <!-- sau khi đang xuất -->
-    <?php displayMsg("logout") ?>
-    <div class="form-group">
-      <label for="">email</label>
-      <input type="text" class="" name="email" placeholder="nhập email ....">
-    </div>
-    <div class="form-group">
-      <label for="">mật khẩu</label>
-      <input type="text" class="" name="password" placeholder="mật khẩu ....">
-    </div>
-    <div class="form-group">
-      <button>Đăng nhập</button>
-    </div>
-  </form>
+  <div class="login-card">
+    <h2>Login</h2>
+    <h3>Enter your credentials</h3>
+    <div class="error-msg"><?= !empty($error) ? $error : "" ?></div>
+    <form class="login-form" method="POST">
+      <input name="email" spellcheck="false" class="control" type="email" placeholder="Email" />
+      <div class="password">
+        <input name="password" spellcheck="false" class="control" id="password" type="password" placeholder="Password" />
+        <button class="toggle" type="button" onclick="togglePassword(this)"></button>
+      </div>
+      <button class="control" type="submit">LOGIN</button>
+    </form>
+  </div>
 </body>
+<script src="./js/login.js"></script>
 
 </html>

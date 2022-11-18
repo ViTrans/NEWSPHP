@@ -14,6 +14,9 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
             <li class="menu-item">
                 <a href="#" class="menu-link">Tin Tức <i class="fa-solid fa-sort-down"></i></a>
                 <ul>
+                    <li>
+                        <a href="?url=postFeatured.php>">Nổi Bật</a>
+                    </li>
                     <?php foreach ($re as $key => $value) : ?>
                     <li>
                         <a href="?url=category.php&id=<?php echo $value['id'] ?>"><?php echo $value['title'] ?></a>

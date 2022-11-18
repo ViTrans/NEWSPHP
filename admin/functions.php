@@ -2,7 +2,6 @@
 
 
 
-// ============================== RESUE ===========================================
 
 function redirect($path)
 {
@@ -41,14 +40,6 @@ function findById($table, $id)
     return mysqli_query($con, $sql);
 }
 
-function getAll($table, $option = ['*'])
-{
-    global $con;
-    $col = implode(',', $option);
-    $sql = "SELECT $col  FROM $table";
-    $reuslt = mysqli_query($con, $sql);
-    return mysqli_fetch_all($reuslt, MYSQLI_ASSOC);
-}
 
 
 function insert($table, $col, $value)
@@ -66,14 +57,6 @@ function updated($table, $values, $condition)
     return  mysqli_query($con, $sql);
 }
 
-/**
- * test comment function ahihih ^^^
- * @author Huỳnh ANH TUẤN
- * @param string   $table là bảng
- * @param array  $condition là điều kiện mặc định là *
- * @param string  $limit lấy số record trả về từ câu truy vấn
- * @return object trả về 1 đối tượng query
- */
 function getWhere($table, $condition, $col = ['*'], $limit = "")
 {
     global $con;
@@ -93,13 +76,10 @@ function test()
 
 
 
-
-// message SESSION
-
+// FLASH MSG
 
 function setMsg($name, $msg, $type = "success")
 {
-    if (!isset($_SESSION["flash_message"]));
     $_SESSION["flash_message"][$name] = [
         "msg" => $msg,
         "type" => $type,
@@ -110,40 +90,42 @@ function setMsg($name, $msg, $type = "success")
 
 function displayMsg($name)
 {
-    if (!isset($_SESSION["flash_message"][$name])) return;
+    if (!isset($_SESSION["flash_message"][$name])) {
+        return;
+    };
+
     $flash = $_SESSION["flash_message"][$name];
     unset($_SESSION["flash_message"][$name]);
 
 
     echo sprintf("<div class='alert alert-%s'><span>&#10005;</span>%s</div>", $flash['type'], $flash['msg']);
 }
-// ================================ END RESUE ===========================================
 
 
-function handelLoginForm($email, $password)
-{
-    if (empty($email) or  empty($password)) {
-        return "Vui lòng nhập đầy đủ thông tin !";
-    }
+// function handelLoginForm($email, $password)
+// {   
+//     if (empty($email) or  empty($password)) {
+//         return "Vui lòng nhập đầy đủ thông tin !";
+//     }
 
-    $reuslt = getWhere("admin", "email = '$email'");
-    if ($reuslt->num_rows == 0) {
-        return "Tài khoản không chính xác !";
-    }
+//     $reuslt = getWhere("admin", "email = '$email'");
+//     if ($reuslt->num_rows == 0) {
+//         return "Tài khoản không chính xác !";
+//     }
 
-    $reuslt = $reuslt->fetch_assoc();
-    $email = $reuslt['email'];
-    $passwordHas = $reuslt['password'];
+//     $reuslt = $reuslt->fetch_assoc();
+//     $email = $reuslt['email'];
+//     $passwordHas = $reuslt['password'];
 
-    if (password_verify($password, $passwordHas)) {
-        return  $reuslt = [
-            "username" => $reuslt['username'],
-            "avatar" => $reuslt['avatar'],
-        ];
-    } else {
-        return "Đăng nhập không thành công";
-    }
-}
+//     if (password_verify($password, $passwordHas)) {
+//         return  $reuslt = [
+//             "username" => $reuslt['username'],
+//             "avatar" => $reuslt['avatar'],
+//         ];
+//     } else {
+//         return "Đăng nhập không thành công";
+//     }
+// }
 
 
 
@@ -164,8 +146,8 @@ function handleFileUpload($file, $option = "post")
     if ($file['size'] > $size) return   "Dung lượng ảnh không được quá 4mb ^^";
 
 
-    // nếu hôm nay chưa co forder d/m/Y thì tạo =>
     $folder = "../uploads/" . $option . "/" . date("d-m-Y", time());
+
 
     if (!file_exists($folder)) {
         mkdir($folder, 0777);
@@ -179,4 +161,36 @@ function handleFileUpload($file, $option = "post")
     move_uploaded_file($file['tmp_name'], "$folder/$fileName");
     $fileNew[] = "$folder/$fileName";
     return $fileNew;
+}
+
+
+
+
+
+// thống kê 
+
+function getTotalPosts()
+{
+    global $con;
+    $sql = "SELECT COUNT(*) as baiviet from posts";
+    return mysqli_query($con, $sql);
+}
+
+function getTotalCategories()
+{
+    global $con;
+    $sql = "SELECT COUNT(*) as danhmuc from category";
+    return mysqli_query($con, $sql);
+}
+function getTotalComments()
+{
+    global $con;
+    $sql = "SELECT COUNT(*) as binhluan from comments";
+    return mysqli_query($con, $sql);
+}
+function getThanhVienDangKy()
+{
+    global $con;
+    $sql = "SELECT COUNT(*) as thanhvien from users";
+    return mysqli_query($con, $sql);
 }

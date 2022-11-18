@@ -11,12 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($name)) {
     $error = "vui lòng nhập tên danh mục";
   } else {
-    // 2-24 kí tự
-    $pattern = "/^[^\d\s\~\^\@\/\#\$\*\{\}\!-\.\:\;\?\>\<\+\[\]\=]{2}[\w\s]{0,22}$/u";
+    $pattern = "/^[^\d\s\~\^\@\/\#\$\*\{\}\!-\.\:\;\?\>\<\+\[\]\=]{2}[\w\s\?\:\!\.\-\&\*\+]{0,100}$/u";
     if (!preg_match($pattern, $name)) {
       $error = "tên danh mục không hợp lệ";
     } else {
-      $row =  getWhere("category", "title = '$name'", ['title'])->num_rows;
+      $row =  getWhere("category", "title = '$name' and status = 1  ", ['title'])->num_rows;
       if ($row > 0) {
         $error = "tên danh mục đã tồn tại";
         setMsg("created_cate", "Tên danh mục đã tồn tại", "error");

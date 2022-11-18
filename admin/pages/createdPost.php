@@ -25,19 +25,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
 
-  if ($featured == false || $featured == null) {
+  if (!isset($featured) && $featured != false) {
     $errors['featured'] = "vui lòng chọn trường nổi bật";
   }
+
 
   if (empty($description)) {
     $errors['description'] = "vui lòng nhập mô tả bài viết";
   } else {
-    $description = filterPost("description");
+
+    if (strlen($description) <= 500) $errors['description'] = "Mô tả phải ít nhất 500 kí tự ^^";
   }
 
   if (empty($title)) {
     $errors['title'] = "vui lòng nhập tên bài viết";
-  };
+  } else {
+    $pattern = "/^[^\~\^\@\/\#\$\*\{\}\!\.\:\;\?\>\<\+\[\]\=]{2}.{0,328}$/u";
+
+    if (!preg_match($pattern, $title)) {
+      $errors['title'] = "tên bài viết không hợp lệ";
+    } else {
+      $row =  getWhere("posts", "title = '$title'", ['title'])->num_rows;
+      if ($row > 0) {
+        $errors['title'] = "tên bài viết đã tồn tại";
+      }
+    }
+  }
 
 
 
@@ -96,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="error-msg flex-3"><?= $errors['title'] ?? "" ?></div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Mổ tả bài viết <span>*</span></label>
+                    <label class="form-label">Mô tả bài viết <span>*</span></label>
                     <div id="editor-wrap ">
                         <textarea name="description" id="editor"></textarea>
                     </div>
@@ -137,7 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 </main>
 <script>
-CKEDITOR.replace("editor");
+// Enable all default text formats:
+CKEDITOR.replace('editor');
 </script>
 </body>
 

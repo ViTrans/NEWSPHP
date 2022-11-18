@@ -32,7 +32,7 @@ $result = getWhere("category", "status = 1 ORDER BY id desc");
             </button>
             <form action="?page=xoadanhmuc" method="post">
               <input type="hidden" name="id" value="<?= $row['id'] ?>">
-              <button onclick="return confirm('xóa danh mục này')" class="btn delete-btn">
+              <button onclick="return confirm('Bạn muốn xóa danh mục này')" class="btn delete-btn">
                 <i class="fa-regular fa-trash-can"></i>
               </button>
             </form>

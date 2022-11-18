@@ -46,12 +46,7 @@ h6 {
   --secondary-color: #f6e3c5;
   --grey-secondary-color: #999;
 }
-header {
-  padding-bottom: 100px;
-}
-body {
-  font-family: "Josefin Sans", sans-serif;
-}
+
 .container-fluid {
   max-width: 1200px;
   width: 100%;
@@ -131,4 +126,22 @@ body {
   font-weight: bold;
   cursor: pointer;
   width: 100%;
+}
+@media screen and (max-width: 1023.98px) {
+  .container-fluid {
+    padding: 0 10px;
+  }
+  .container {
+    padding: 0 10px;
+  }
+  .signup-main {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .form-sign select {
+    width: 100%;
+  }
+  .form-sign input {
+    width: 100%;
+  }
 }

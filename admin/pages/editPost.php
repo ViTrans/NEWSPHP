@@ -1,4 +1,7 @@
 <?php
+
+
+
 $id = validateInputInt("id", false);
 if (empty($id)) {
     setMsg("edit_post", "không tồn tại bài viết", "error");
@@ -23,17 +26,14 @@ $categories = getWhere("category", "status = '1'");
 
 
 
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $errors = [];
     $title = filterPost("title");
     $cate = validateInputInt("cate_id");
-    $featured = validateInputInt("featured");
+    $featured = validateInputInt("featured", true, 0);
     $description = trim($_POST['description']);
-
-
+    // ko up img thi lay anh cu
     if (empty($_FILES['img']['name'])) {
         $path = $_POST['path'];
     } else {
@@ -54,17 +54,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    if ($featured == false || $featured == null) {
+    if (!isset($featured) && $featured != false) {
         $errors['featured'] = "vui lòng chọn trường nổi bật";
     }
 
     if (empty($description)) {
         $errors['description'] = "vui lòng nhập mô tả bài viết";
+    } else {
+
+        if (strlen($description) <= 500) $errors['description'] = "Mô tả phải ít nhất 500 kí tự ^^";
     }
 
     if (empty($title)) {
+
         $errors['title'] = "vui lòng nhập tên bài viết";
-    };
+    } else {
+        $pattern = "/^[^\~\^\@\/\#\$\*\{\}\!\.\:\;\?\>\<\+\[\]\=]{2}.{0,328}$/u";
+        if (!preg_match($pattern, $title)) {
+            $errors['title'] = "tên bài viết không hợp lệ";
+        }
+    }
 
 
 
@@ -101,8 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php
                         while ($cate = mysqli_fetch_assoc($categories)) :
                         ?>
-                        <option <?= $result['cate_id'] == $cate['id'] ? "selected" : false ?>
-                            value="<?= $cate['id'] ?>"><?= $cate['title'] ?></option>
+                            <option <?= $result['cate_id'] == $cate['id'] ? "selected" : false ?> value="<?= $cate['id'] ?>"><?= $cate['title'] ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>
@@ -112,8 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label class="form-label">Tên bài viết <span>*</span></label>
-                    <input value="<?= $result["title"] ?>" class="form-input" name="title" type="text"
-                        placeholder="Tên bài viết..." />
+                    <input value="<?= $result["title"] ?>" class="form-input" name="title" type="text" placeholder="Tên bài viết..." />
                 </div>
                 <div class="form-group spacing">
                     <span class="form-label">&nbsp;</span>
@@ -131,9 +138,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label class="form-label">Ảnh bài viết <span>*</span></label>
-                    <input class="form-input" type="file" name="img">
-                    <input class="form-input" value="<?= $result["img"] ?>" type="hidden" name="path">
-                    <img src="<?= $result["img"] ?>" alt="">
+
+                    <div class="row">
+                        <input class="form-input" type="file" name="img">
+                        <img src="<?= $result["img"] ?>" alt="">
+                        <input value="<?= $result["img"] ?>" type="hidden" name="path">
+                    </div>
                 </div>
                 <div class="form-group spacing">
                     <span class="form-label">&nbsp;</span>
@@ -154,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <span class="form-label">&nbsp;</span>
                     <button class="flex-3 submit-button">
-                        Thêm
+                        Sửa
                     </button>
                 </div>
             </form>
@@ -163,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 </main>
 <script>
-CKEDITOR.replace("editor");
+    CKEDITOR.replace('editor');
 </script>
 </body>
 

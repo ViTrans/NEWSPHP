@@ -9,7 +9,7 @@ if(isset($_SESSION['user'])){
         $sql = "INSERT INTO `comments` (`id`, `post_id`, `user_id`, `content`, `created_at`, `updated_at`, `status`) VALUES (NULL, '$post_id', '$user_id', '$comment', '$created_at', '2022-11-10 14:09:22.000000', '0');";
         $result = mysqli_query($con,$sql);
         if($result){
-            header("Location: ?url=postDetails.php&id=$post_id");
+            header('location: index.php?url=post.php&id='.$post_id);
         }
     }
 }

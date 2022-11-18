@@ -24,3 +24,23 @@ window.addEventListener("load", function () {
     sliderMan.style.transform = `translateX(-${index * sliderItemWitdth}px)`;
   }, 3000);
 });
+
+// loadmore jquery
+$(document).on("click", ".btn-primary", function () {
+  var id = $(this).attr("id");
+  $(".btn-primary").html("Loading...");
+  $.ajax({
+    url: "loadmore.php",
+    method: "POST",
+    data: { id: id },
+    dataType: "text",
+    success: function (data) {
+      if (data != "") {
+        $(".show-more-btn").remove();
+        $(".post-new .post-list").append(data);
+      } else {
+        $(".show-more-btn").html("No Data");
+      }
+    },
+  });
+});
