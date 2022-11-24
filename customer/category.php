@@ -5,6 +5,7 @@ $id = $_GET['id'];
 $result = getPostByCategory($con,$id);
 ?>
 <div class="container">
+    <?php if(isset($result) && mysqli_num_rows($result) > 0){ ?>
     <h2 class="heading">Danh Mục</h2>
     <div class="post-list">
         <?php while($row = mysqli_fetch_assoc($result)) { ?>
@@ -31,3 +32,7 @@ $result = getPostByCategory($con,$id);
         </div>
         <?php } ?>
     </div>
+    <?php }
+    else{
+        echo '<h2 class="heading">Không có bài viết nào</h2>';
+    } ?>

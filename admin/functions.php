@@ -172,14 +172,14 @@ function handleFileUpload($file, $option = "post")
 function getTotalPosts()
 {
     global $con;
-    $sql = "SELECT COUNT(*) as baiviet from posts";
+    $sql = "SELECT COUNT(*) as baiviet from posts where status = 1";
     return mysqli_query($con, $sql);
 }
 
 function getTotalCategories()
 {
     global $con;
-    $sql = "SELECT COUNT(*) as danhmuc from category";
+    $sql = "SELECT COUNT(*) as danhmuc from category where status = 1";
     return mysqli_query($con, $sql);
 }
 function getTotalComments()

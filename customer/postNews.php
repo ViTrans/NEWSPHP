@@ -26,8 +26,8 @@
             </a>
         </div>
         <?php } ?>
+        <div class="show-more-btn">
+            <button type="button" class="btn btn-primary" id="<?php echo $id ?>">Xem Thêm</button>
+        </div>
     </div>
-</div>
-<div class="show-more-btn">
-    <button type="button" class="btn btn-primary" id="<?php echo $id ?>">Xem Thêm</button>
 </div>

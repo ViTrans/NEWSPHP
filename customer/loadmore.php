@@ -1,9 +1,12 @@
 <?php
 include_once 'func/connect.php';
+include_once 'func/funcs.php';
 $output = '';
 $id = $_POST['id'];
-$sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name FROM posts WHERE id > $id and status = 1 AND featured = 0 LIMIT 3";
-$result = mysqli_query($con,$sql);
+loadMore($con,$id);
+
+$result = loadMore($con,$id);
+
 if(mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result)){
         $output .= '
