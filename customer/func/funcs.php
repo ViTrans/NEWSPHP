@@ -34,9 +34,16 @@ function editProfile($con,$id,$username,$email,$avatar){
     $sql = "UPDATE users SET username = '$username', email = '$email', avatar = '$avatar' WHERE id = $id";
     return mysqli_query($con,$sql);
 }
-// function loadmore($con,$id){
-//     $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name
-//     FROM posts WHERE id > $id and status = 1 ORDER BY id DESC LIMIT 3";
-//     return mysqli_query($con,$sql);
-// }
+function loadMore($con,$id){
+    $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name FROM posts WHERE id > $id and status = 1 AND featured = 0 LIMIT 3";
+    return mysqli_query($con,$sql);
+}
+function postComments ($con,$post_id,$user_id,$content,$created_at){
+    $sql = "INSERT INTO `comments` (`id`, `post_id`, `user_id`, `content`, `created_at`, `updated_at`, `status`) VALUES (NULL, '$post_id', '$user_id', '$content', '$created_at', '2022-11-10 14:09:22.000000', '0');";
+    return mysqli_query($con,$sql);
+}
+function postRelated($con,$id){
+    $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name FROM posts WHERE category_id = $id and status = 1  LIMIT 3";
+    return mysqli_query($con,$sql);
+}
 ?>

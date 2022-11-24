@@ -1,14 +1,18 @@
 <footer>
-    <div class="row">
-        <div class="col-md-12">
-            <p class="text-center">@2018 - All Rights Reserved</p>
-        </div>
-        <div class="social">
-            <ul>
-                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-            </ul>
-        </div>
+    <div>
+        <p class="text-center">@2018 - All Rights Reserved</p>
+    </div>
+    <div class="footer-page">
+        <ul>
+            <li>
+                <a href="index.php">Trang Chủ</a>
+            </li>
+            <li>
+                <a href="?url=postFeatured.php>">Nổi Bật</a>
+            </li>
+            <li>
+                <a href="?url=category.php&id=7">Công Nghệ</a>
+            </li>
+        </ul>
     </div>
 </footer>

@@ -4,6 +4,8 @@ $id = $_GET['id'];
 $result = getPostById($con,$id);
 $row = mysqli_fetch_assoc($result);
 $re = getCategory($con);
+postRelated($con,$row['category_id']);
+$resultPostRelated = postRelated($con,$row['category_id']);
 ?>
 <div class="container">
     <div class="post-header-main">
@@ -11,8 +13,10 @@ $re = getCategory($con);
             <a href="#" class="post-media">
                 <img src="<?php echo $row['img']?>" alt="" class="post-image" />
             </a>
-            <a href="?url=category.php&id=<?php echo $row['category_id']?>"
-                class="post-category"><?php echo $row['category_name']?></a>
+            <div>
+                <a href="?url=category.php&id=<?php echo $row['category_id']?>"
+                    class="post-category"><?php echo $row['category_name']?></a>
+            </div>
             <h3>
                 <a href="#" class="post-title"><?php echo $row['title']?></a>
             </h3>
@@ -26,84 +30,35 @@ $re = getCategory($con);
             <?php echo html_entity_decode($row['description']) ?>
         </div>
     </div>
-</div>
-<?php include './post-comment.php'?>
-<!-- <div class="post-related">
-    <h2 class="heading">Bài Viết Liên Quan</h2>
-    <div class="post-list">
-        <div class="post-item">
-            <a href="#" class="post-media">
-                <img src="https://cdn.dribbble.com/users/5209175/screenshots/15329869/media/46b95b0ec58274621935463cd534f793.jpg?compress=1&resize=1600x1200"
-                    alt="" class="post-image" />
-            </a>
-            <a href="#" class="post-category">Shop</a>
-            <h3>
-                <a href="#" class="post-title">How to choose best bike for spring in Australia</a>
-            </h3>
-            <p class="post-desc">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-                at quae architecto perspiciatis dolore deleniti, voluptas aperiam
-                dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
-                nostrum quae.
-            </p>
-            <a href="#" class="post-author">
-                <img src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
-                    alt="" class="post-author-image" />
-                <div class="post-author-info">
-                    <h4 class="post-author-name">By Sebastian</h4>
-                    <time class="post-author-time">Just now</time>
+    <div class="post-related">
+        <?php if(isset($resultPostRelated) && mysqli_num_rows($resultPostRelated) > 0){ ?>
+        <h2 class="heading">Bài Viết Liên Quan</h2>
+        <?php } ?>
+        <div class="post-list">
+            <?php foreach ($resultPostRelated as $key => $value) : ?>
+            <div class="post-item">
+                <a href="?url=postDetails.php&id=<?php echo $value['id']?>" class="post-media">
+                    <img src="<?php echo $value['img']?>" alt="" class="post-image" />
+                </a>
+                <a href="?url=category.php&id=<?php echo $value['category_id']?>"
+                    class="post-category"><?php echo $value['category_name']?></a>
+                <h3>
+                    <a href="?url=postDetails.php&id=<?php echo $value['id']?>"
+                        class="post-title"><?php echo $value['title']?></a>
+                </h3>
+                <div class="post-desc">
+                    <?php echo html_entity_decode($value['description'])?>
                 </div>
-            </a>
-        </div>
-        <div class="post-item">
-            <a href="#" class="post-media">
-                <img src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
-                    alt="" class="post-image" />
-            </a>
-            <a href="#" class="post-category">Shop</a>
-            <h3>
-                <a href="#" class="post-title">How to choose best bike for spring in Australia</a>
-            </h3>
-            <p class="post-desc">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-                at quae architecto perspiciatis dolore deleniti, voluptas aperiam
-                dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
-                nostrum quae.
-            </p>
-            <a href="#" class="post-author">
-                <img src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
-                    alt="" class="post-author-image" />
-                <div class="post-author-info">
-                    <h4 class="post-author-name">By Sebastian</h4>
-                    <time class="post-author-time">Just now</time>
-                </div>
-            </a>
-        </div>
-        <div class="post-item">
-            <a href="#" class="post-media">
-                <img src="https://cdn.dribbble.com/users/486985/screenshots/15329016/media/de4829c5298afd8ed930e796154e276a.jpg?compress=1&resize=1600x1200"
-                    alt="" class="post-image" />
-            </a>
-            <a href="#" class="post-category">Shop</a>
-            <h3>
-                <a href="#" class="post-title">How to choose best bike for spring in Australia</a>
-            </h3>
-            <p class="post-desc">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-                at quae architecto perspiciatis dolore deleniti, voluptas aperiam
-                dolorem sit. Est in asperiores ipsa repellat sit odit eos quia
-                nostrum quae.
-            </p>
-            <a href="#" class="post-author">
-                <img src="https://cdn.dribbble.com/users/4674461/screenshots/15330665/media/fe4a38ceca4300ac0614483ab9e7a0d7.png?compress=1&resize=1600x1200"
-                    alt="" class="post-author-image" />
-                <div class="post-author-info">
-                    <h4 class="post-author-name">By Sebastian</h4>
-                    <time class="post-author-time">Just now</time>
-                </div>
-            </a>
+                <a href="#" class="post-author">
+                    <div class="post-author-info">
+                        <time class="post-author-time"><?php echo $value['created_at']?></time>
+                    </div>
+                </a>
+            </div>
+            <?php endforeach ?>
         </div>
     </div>
-</div> -->
+    <?php include './post-comment.php'?>
+</div>
 </div>
 </div>

@@ -261,12 +261,12 @@ body {
 .post-category {
   display: inline-block;
   padding: 5px 10px;
-  color: #ffa400;
+  color: white;
   margin-bottom: 10px;
-  position: relative;
   border-radius: 10px;
+  background-color: rgb(67, 170, 139);
 }
-.post-category:after {
+/* .post-category:after {
   content: "";
   position: absolute;
   top: 0;
@@ -276,7 +276,7 @@ body {
   border-radius: inherit;
   background-color: currentColor;
   opacity: 0.15;
-}
+} */
 
 .post-title {
   font-weight: 600;
@@ -300,6 +300,7 @@ body {
   width: 100%;
   word-break: break-word;
 }
+
 .post-item .post-desc h1,
 h2,
 h3,
@@ -375,24 +376,38 @@ h6 {
 
 /* footer */
 footer {
-  background-color: #ff6464;
-  color: white;
+  color: #000000;
+  border-top: 2px solid #eaeaea;
+  max-width: 960px;
+  margin: 0 auto;
   padding: 20px;
   text-align: center;
-}
-.social ul {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 }
-.social li {
+footer p {
+  font-weight: 300;
+}
+footer ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer ul li {
+  margin: 0 10px;
+  font-weight: 500;
+}
+footer ul li a {
+  color: #000000;
+  text-decoration: none;
+  transition: all 0.3s linear;
+}
+footer li {
   list-style: none;
 }
-.social a {
-  text-decoration: none;
-  font-size: 1.5rem;
-  color: white;
+footer ul li a:hover {
+  color: #ff6464;
 }
 
 /* details */
@@ -414,9 +429,6 @@ footer {
 .post-header-main .post-item .post-title {
   font-size: 30px;
   font-weight: 600;
-}
-.post-header-main .post-item .post-category {
-  width: 100%;
 }
 .post-details-content {
   margin-left: auto;
@@ -546,6 +558,12 @@ footer {
   }
   .account a {
     font-size: 0.9rem;
+  }
+  footer {
+    flex-direction: column;
+  }
+  footer p {
+    padding-bottom: 10px;
   }
 }
 /* post comment */
@@ -680,16 +698,25 @@ footer {
   display: block;
   margin-left: auto;
 }
+.post-new {
+  margin-bottom: 100px;
+}
+.post-new .post-list {
+  position: relative;
+}
 .show-more-btn {
   text-align: center;
   display: block;
-  margin: 50px auto;
+  margin: 30px auto;
   color: white;
   font-size: 16px;
   font-weight: 600;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .show-more-btn .btn-primary {
-  color: #fff;
-  background-color: #ff6464;
-  border-color: #ff6464;
+  color: white;
+  background-color: rgb(67, 170, 139);
 }
