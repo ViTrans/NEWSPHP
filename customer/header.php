@@ -4,9 +4,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
 ?>
 <header>
     <div class="navbar">
-        <a href="#" class="logo">
-            NEWS
-        </a>
+        <a href="#" class="logo"> NEWS </a>
         <ul class="menu">
             <li class="menu-item">
                 <a href="index.php" class="menu-link">Trang Chủ</a>
@@ -17,7 +15,8 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
                     <li>
                         <a href="?url=postFeatured.php>">Nổi Bật</a>
                     </li>
-                    <?php foreach ($re as $key => $value) : ?>
+                    <?php foreach ($re as $key =>
+          $value) : ?>
                     <li>
                         <a href="?url=category.php&id=<?php echo $value['id'] ?>"><?php echo $value['title'] ?></a>
                     </li>

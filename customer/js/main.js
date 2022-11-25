@@ -1,5 +1,4 @@
 window.addEventListener("load", function () {
-  const slider = document.querySelector(".slider");
   const sliderMan = document.querySelector(".slider-main");
   const sliderItems = document.querySelectorAll(".slider-item");
   const dotItems = document.querySelectorAll(".slider-dot-item");
