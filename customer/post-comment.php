@@ -40,7 +40,7 @@ $re = getCommentByPostId($con,$_GET['id']);
             <div class="post-comment__item__content">
                 <div class="post-comment__item__content__info">
                     <h4 class="name"><?php echo $value['user_name']?></h4>
-                    <time class="date"><?= date("d-m-Y H:i:s",strtotime($value['created_at']))?></time>
+                    <time class="date"><?= timeAgo($value['created_at']) ?></time>
                 </div>
                 <div class="post-comment__item__content__text">
                     <?php echo $value['content']?>
