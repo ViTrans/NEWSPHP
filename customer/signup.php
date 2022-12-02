@@ -39,7 +39,6 @@ if(isset($_POST['username'])){
   $password = $_POST['password'];
   $rpassword = $_POST['rpassword'];
   $avatar = $_FILES['avatar']['name'];
-
   $birthday = $_POST['birthday'];
   $gender = $_POST['gender'];
   if(empty($username)){
@@ -59,11 +58,8 @@ if(isset($_POST['username'])){
   }
     if(empty($err)){
         $pass = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO `users` (`id`, `email`, `username`, `password`, `avatar`, `birthday`, `gender`, `status`) VALUES (NULL, '$email', '$username', '$pass', '$avatar', '$birthday', '$gender', '0');";
-      $query = mysqli_query($con, $sql);
-      if($query){
-        header("Location: ./login.php");
-      }
+       signup($con,$username,$email,$pass,$avatar,$birthday,$gender);
+       echo '<script>alert("Đăng ký thành công");window.location.href="login.php"</script>';
     }
 }
 ?>
@@ -122,6 +118,7 @@ if(isset($_POST['username'])){
                         <span class="error"><?php echo (isset($err['birthday']))? $err['birthday'] : '' ?></span>
                     </div>
                     <div class="text-field">
+                        <label>Ảnh Đại Diện</label>
                         <input type="file" name="avatar" />
                         <?php echo (isset($err['avatar']))? $err['avatar'] : '' ?>
                     </div>

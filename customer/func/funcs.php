@@ -46,6 +46,14 @@ function postRelated($con,$id){
     $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name FROM posts WHERE category_id = $id and status = 1  LIMIT 3";
     return mysqli_query($con,$sql);
 }
+function signup($con,$username,$email,$password,$avatar,$birthday,$gender){
+    $sql = "INSERT INTO `users` (`id`, `email`, `username`, `password`, `avatar`, `birthday`, `gender`, `status`) VALUES (NULL, '$email', '$username', '$password', '$avatar', '$birthday', '$gender', '0');";
+    return mysqli_query($con,$sql);
+}
+function login($con,$email){
+    $sql = "SELECT * FROM `users` WHERE `email` = '$email'";
+    return mysqli_query($con,$sql);
+}
 function timeAgo($time_ago){
     $time_ago = strtotime($time_ago);
     $cur_time   = time();
