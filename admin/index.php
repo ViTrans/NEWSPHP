@@ -52,27 +52,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/login.css">
-  <title>Login ADMIN</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>Login ADMIN</title>
 </head>
 
 <body>
-  <div class="login-card">
-    <h2>Login</h2>
-    <h3>Enter your credentials</h3>
-    <div class="error-msg"><?= !empty($error) ? $error : "" ?></div>
-    <form class="login-form" method="POST">
-      <input name="email" spellcheck="false" class="control" type="email" placeholder="Email" />
-      <div class="password">
-        <input name="password" spellcheck="false" class="control" id="password" type="password" placeholder="Password" />
-        <button class="toggle" type="button" onclick="togglePassword(this)"></button>
-      </div>
-      <button class="control" type="submit">LOGIN</button>
-    </form>
-  </div>
+    <div class="login-card">
+        <h2>Login</h2>
+        <h3>Enter your credentials</h3>
+        <div class="error-msg"><?= !empty($error) ? $error : "" ?></div>
+        <form class="login-form" method="POST">
+            <input name="email" spellcheck="false" class="control" type="email" placeholder="Email" />
+            <div class="password">
+                <input name="password" spellcheck="false" class="control" id="password" type="password"
+                    placeholder="Password" />
+                <button class="toggle" type="button" onclick="togglePassword(this)"></button>
+            </div>
+            <button class="control" type="submit">LOGIN</button>
+        </form>
+    </div>
 </body>
 <script src="./js/login.js"></script>
 

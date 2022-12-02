@@ -21,7 +21,7 @@ body {
   background-image: url("../images/background.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: "Euclid Circular A";
+  font-family: "Roboto", sans-serif;
   color: #3a334e;
   animation: rotate 1s infinite alternate linear;
 }

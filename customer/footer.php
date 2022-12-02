@@ -8,7 +8,7 @@
                 <a href="index.php">Trang Chủ</a>
             </li>
             <li>
-                <a href="?url=postFeatured.php>">Nổi Bật</a>
+                <a href="?url=postFeatured.php">Nổi Bật</a>
             </li>
             <li>
                 <a href="?url=category.php&id=7">Công Nghệ</a>

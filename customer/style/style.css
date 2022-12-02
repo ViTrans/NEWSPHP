@@ -33,6 +33,9 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -708,7 +711,7 @@ footer ul li a:hover {
   text-align: center;
   display: block;
   margin: 30px auto;
-  color: white;
+  color: black;
   font-size: 16px;
   font-weight: 600;
   position: absolute;
@@ -719,4 +722,16 @@ footer ul li a:hover {
 .show-more-btn .btn-primary {
   color: white;
   background-color: rgb(67, 170, 139);
+}
+.sroll-to-top svg {
+  width: 50px;
+  height: 50px;
+  color: white;
+  background-color: #ff6464;
+  cursor: pointer;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }

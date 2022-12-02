@@ -38,7 +38,7 @@ $(document).on("click", ".btn-primary", function () {
         $(".show-more-btn").remove();
         $(".post-new .post-list").append(data);
       } else {
-        $(".show-more-btn").html("No Data");
+        $(".show-more-btn").html("Hết bài viết");
       }
     },
   });

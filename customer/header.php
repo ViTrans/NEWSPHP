@@ -13,7 +13,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
                 <a href="#" class="menu-link">Tin Tức <i class="fa-solid fa-sort-down"></i></a>
                 <ul>
                     <li>
-                        <a href="?url=postFeatured.php>">Nổi Bật</a>
+                        <a href="?url=postFeatured.php">Nổi Bật</a>
                     </li>
                     <?php foreach ($re as $key =>
           $value) : ?>
