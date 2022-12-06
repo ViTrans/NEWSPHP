@@ -542,6 +542,7 @@ tr:hover td {
   min-width: 600px;
   border-radius: 8px;
   transition: var(--smooth);
+  margin-bottom: 6px;
 }
 .alert > span {
   position: absolute;
@@ -674,7 +675,26 @@ tr:hover td {
   .pagination ul {
     flex-wrap: wrap;
   }
+  main .top-header {
+    justify-content: center;
+  }
   .card {
     width: calc(100% - 15px);
+  }
+  .top-header #bar_btn {
+    display: none;
+  }
+
+  /*  */
+
+  .sidebar.collapse {
+    width: 75px;
+  }
+  .sidebar.collapse ~ main {
+    width: calc(100% - 75px);
+    left: 75px;
+  }
+  .sidebar.collapse .infor {
+    opacity: 0;
   }
 }

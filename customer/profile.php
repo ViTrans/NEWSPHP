@@ -91,6 +91,7 @@ if(isset($_POST['username'])){
                 <div class="text-field">
                     <label for="avatar">Ảnh Đại Diện</label>
                     <input type="file" name="avatar" value="<?php echo $row['avatar']?>" />
+                    <input type="hidden" value="<?php echo $row['avatar']?>">
                     <?php echo (isset($err['avatar']))? $err['avatar'] : '' ?>
                 </div>
                 <!-- <div class="text-field">

@@ -5,31 +5,32 @@ include './func/funcs.php';
 $re = getCategory($con);
 session_start();
 $err = []; // tạo mảng lưu lỗi
-if (isset($_POST['email'])) { // kiểm tra xem có click vào nút đăng ký hay không
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    if (empty($email)) {
-        $err['email'] = 'vui lòng nhập email';
+if(isset($_POST['email'])){ // kiểm tra xem có click vào nút đăng ký hay không
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  if(empty($email)){
+    $err['email'] = 'vui lòng nhập email';
+  }
+  if(empty($password)){
+    $err['password'] = 'vui lòng nhập mật khẩu';
+  }
+  if(empty($err)){ // nếu mảng lỗi rỗng thì thực hiện đăng ký
+    $sql = "SELECT * FROM `users` WHERE `email` = '$email'";
+    $query = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($query);
+    $checkEmail = mysqli_num_rows($query);
+    if($checkEmail == 1){
+        $checkPass = password_verify($password, $data['password']);
+      if($checkPass == true){
+        $_SESSION['user'] = $data;
+        header("Location: index.php");
     }
-    if (empty($password)) {
-        $err['password'] = 'vui lòng nhập mật khẩu';
     }
-    if (empty($err)) { // nếu mảng lỗi rỗng thì thực hiện đăng ký
-        $sql = "SELECT * FROM `users` WHERE `email` = '$email'";
+    else{
+      $err['email'] = 'email không tồn tại';
+    }
 
-        $query = mysqli_query($con, $sql);
-        $data = mysqli_fetch_assoc($query);
-        $checkEmail = mysqli_num_rows($query);
-        if ($checkEmail == 1) {
-            $checkPass = password_verify($password, $data['password']);
-            if ($checkPass == true) {
-                $_SESSION['user'] = $data;
-                header("Location: index.php");
-            }
-        } else {
-            $err['email'] = 'email không tồn tại';
-        }
-    }
+  }
 }
 ?>
 
@@ -44,7 +45,9 @@ if (isset($_POST['email'])) { // kiểm tra xem có click vào nút đăng ký h
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/login.css" />
 </head>
@@ -60,13 +63,15 @@ if (isset($_POST['email'])) { // kiểm tra xem có click vào nút đăng ký h
                 <form class="form-sign" action="" method="POST">
                     <div class="text-field">
                         <label for="email">Nhập email tài khoản</label>
-                        <input name="email" autocomplete="off" type="email" id="email" placeholder="Nhập Tên Tài Khoản" />
-                        <span class="error"><?php echo (isset($err['email'])) ? $err['email'] : '' ?></span>
+                        <input name="email" autocomplete="off" type="email" id="email"
+                            placeholder="Nhập Tên Tài Khoản" />
+                        <span class="error"><?php echo (isset($err['email']))? $err['email'] : '' ?></span>
                     </div>
                     <div class="text-field">
                         <label for="password">Mật Khẩu</label>
-                        <input name="password" autocomplete="off" type="password" id="password" placeholder="Nhập Mật Khẩu" />
-                        <span class="error"><?php echo (isset($err['password'])) ? $err['password'] : '' ?></span>
+                        <input name="password" autocomplete="off" type="password" id="password"
+                            placeholder="Nhập Mật Khẩu" />
+                        <span class="error"><?php echo (isset($err['password']))? $err['password'] : '' ?></span>
                     </div>
                     <button id="login" type="submit">Đăng Nhập</button>
                 </form>
@@ -87,8 +92,10 @@ if (isset($_POST['email'])) { // kiểm tra xem có click vào nút đăng ký h
     </main>
     <?php
     include 'footer.php';
-    ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./js/main.js"></script>
 </body>
 

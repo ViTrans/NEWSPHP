@@ -12,8 +12,10 @@ function getCategory($con)
 }
 function getFeaturedPost($con)
 {
-    $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name
-    FROM posts WHERE featured = 1 AND status = 1  ORDER BY created_at DESC LIMIT 4";
+    $sql = "SELECT posts.*,category.title as  category_name
+    FROM posts,category WHERE posts.featured = 1 AND posts.status = 1 
+    and category.status = 1 and category.id = posts.category_id
+     ORDER BY posts.updated_at DESC LIMIT 4";
     return mysqli_query($con, $sql);
 }
 function getPostByCategory($con, $id)
@@ -54,8 +56,7 @@ function postComments($con, $post_id, $user_id, $content, $created_at)
 }
 function postRelated($con, $id, $idPost)
 {
-    $sql = "SELECT *,
-     (SELECT title FROM category WHERE category.id = posts.category_id)
+    $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id)
      AS category_name FROM posts WHERE category_id = $id and status = 1 and NOT posts.id = $idPost  LIMIT 3";
     return mysqli_query($con, $sql);
 }

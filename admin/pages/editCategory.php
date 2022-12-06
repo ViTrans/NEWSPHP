@@ -40,7 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (empty($error)) {
-        updated("category", ['title' => $name], "id = '$id'");
+        updated("category", [
+            'title' => $name,
+        ], "id = '$id'");
         setMsg("edit_cate", "Sửa thành công danh mục");
         redirect("?page=danhsachdanhmuc");
     }

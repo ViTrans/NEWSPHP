@@ -83,11 +83,11 @@ $categories = select(["category"], ['*'], 'status = 1');
 
 
 <div class="content">
+    <?php displayMsg("created_post") ?>
+    <?php displayMsg("del_post") ?>
+    <?php displayMsg("edit_post") ?>
     <div class="section-heading">
         <h2>Danh sách bài viết</h2>
-        <?php displayMsg("created_post") ?>
-        <?php displayMsg("del_post") ?>
-        <?php displayMsg("edit_post") ?>
 
         <button><a href="?page=thembaiviet">Thêm bài viết</a></button>
     </div>

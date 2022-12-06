@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file = handleFileUpload($_FILES['img']);
         if (is_array($file)) {
             $path = $file[0];
+            unlink($post['img']);
         } else {
             $errors['img'] =  $file;
         }

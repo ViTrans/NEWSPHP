@@ -190,6 +190,7 @@ function handleFileUpload($file, $option = "post")
 
 
     $folder = "../uploads/" . $option . "/" . date("d-m-Y", time());
+    // $folder = "../uploads/" . $option;
 
 
     if (!file_exists($folder)) {

@@ -37,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="content">
   <div class="section-heading">
-    <h2>Sửa danh mục</h2>
     <?= displayMsg("created_cate"); ?>
+    <h2>Sửa danh mục</h2>
     <button><a href="?page=danhsachdanhmuc">Quay lại</a></button>
   </div>
   <div>
