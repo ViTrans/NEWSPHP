@@ -33,6 +33,10 @@ function validateInputInt($name, $input = true, $min = 1, $max = 10000)
         filter_input(INPUT_GET, $name, FILTER_VALIDATE_INT, ["options" => ["min_ranger" => $min, "max_ranger" => $max]]);
 }
 
+$caterogies = ["danhsachdanhmuc", "suadanhmuc", "themdanhmuc"];
+$posts = ["suabaiviet", "thembaiviet", "danhsachbaiviet"];
+
+
 
 function activeLink($arr = [])
 {
