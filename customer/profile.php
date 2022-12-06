@@ -2,18 +2,18 @@
 $id = $_SESSION['user']['id'];
 $re = getProfile($con,$id);
 $row = mysqli_fetch_assoc($re);
+$err = [];
 // edit profile
 if(isset($_POST['username'])){
     $folder_path = '../uploads/';
     $file_path =  $folder_path . basename($_FILES['avatar']['name']);
     $flag_ok = true;
     $file_type = strtolower(pathinfo($file_path,PATHINFO_EXTENSION));
-    if(isset($_POST["username"])) {
+    if(isset($_POST["avatar"])) {
         $check = getimagesize($_FILES["avatar"]["tmp_name"]);
         if($check !== false) {
         //   echo "File is an image - " . $check["mime"] . ".";
             $flag_ok = true;
-          
         } else {
           echo "File is not an image.";
             $flag_ok = false;
@@ -91,7 +91,11 @@ if(isset($_POST['username'])){
                 <div class="text-field">
                     <label for="avatar">Ảnh Đại Diện</label>
                     <input type="file" name="avatar" value="<?php echo $row['avatar']?>" />
+<<<<<<< Updated upstream
                     <input type="hidden" value="<?php echo $row['avatar']?>">
+=======
+                    <input type="hidden" name="cloneavatar" value="<?php echo $row['avatar']?>" />
+>>>>>>> Stashed changes
                     <?php echo (isset($err['avatar']))? $err['avatar'] : '' ?>
                 </div>
                 <!-- <div class="text-field">

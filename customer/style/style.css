@@ -568,7 +568,11 @@ footer ul li a:hover {
   footer p {
     padding-bottom: 10px;
   }
+<<<<<<< Updated upstream
   .post-related .post-list{
+=======
+  .post-related .post-list {
+>>>>>>> Stashed changes
     display: flex;
     width: 100%;
     scroll-snap-type: x mandatory;
@@ -576,7 +580,11 @@ footer ul li a:hover {
     column-gap: 20px;
     overflow-x: auto;
   }
+<<<<<<< Updated upstream
   .post-related .post-list .post-item{
+=======
+  .post-related .post-list .post-item {
+>>>>>>> Stashed changes
     flex: 0 0 300px;
     scroll-snap-align: start;
   }

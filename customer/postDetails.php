@@ -4,7 +4,10 @@ $id = $_GET['id'];
 $result = getPostById($con,$id);
 $row = mysqli_fetch_assoc($result);
 $re = getCategory($con);
+<<<<<<< Updated upstream
 // postRelated($con,$row['category_id'],$id);
+=======
+>>>>>>> Stashed changes
 $resultPostRelated = postRelated($con,$row['category_id'],$id);
 ?>
 <div class="container">
