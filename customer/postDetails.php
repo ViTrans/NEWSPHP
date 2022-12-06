@@ -4,8 +4,8 @@ $id = $_GET['id'];
 $result = getPostById($con,$id);
 $row = mysqli_fetch_assoc($result);
 $re = getCategory($con);
-postRelated($con,$row['category_id']);
-$resultPostRelated = postRelated($con,$row['category_id']);
+// postRelated($con,$row['category_id'],$id);
+$resultPostRelated = postRelated($con,$row['category_id'],$id);
 ?>
 <div class="container">
     <div class="post-header-main">
