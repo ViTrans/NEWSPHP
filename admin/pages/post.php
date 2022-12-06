@@ -1,10 +1,5 @@
 <?php
 
-// $result =
-//     getWhere("posts,category", "posts.category_id = category.id AND posts.status = 1 ORDER BY id desc", ['posts.*', 'category.title  as cateName']);
-
-
-
 
 if (isset($_POST['filter']) && !empty($_POST)) {
     $_SESSION['filter'] = [
@@ -38,7 +33,6 @@ if (!empty($_SESSION['filter'])) {
 }
 
 
-// SELECT posts.*,category.title as cate_title from category,posts where category.id =1 AND posts.title LIKE '%thegioi%'   AND category.status = 1 and posts.status = 1 and category.id = posts.category_id ORDER BY posts.id desc LIMIT 4 OFFSET 0
 $per_page = 4;
 
 
@@ -81,7 +75,8 @@ $toTalRows = mysqli_query($con, $queryTotalPosts)->num_rows;
 $toTalPages = ceil($toTalRows / $per_page);
 $result  = mysqli_query($con, $sql);
 
-$categories = getWhere("category", "status = '1'");
+$categories = select(["category"], ['*'], 'status = 1');
+
 ?>
 
 
@@ -101,11 +96,11 @@ $categories = getWhere("category", "status = '1'");
             <input value="<?= $_SESSION['filter']['title'] ?? "" ?>" class="" name="title" type="text" placeholder="Tên bài viết..." />
             <select name="cate_id">
                 <option value="">[--Chọn tên danh mục--]</option>
-                <?php
-                while ($row = mysqli_fetch_assoc($categories)) :
+                <?php foreach ($categories as  $row) :
                 ?>
-                    <option <?= isset($_SESSION['filter']['cate_id']) && ($_SESSION['filter']['cate_id'] === $row['id']) ? "selected" : "" ?> value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-                <?php endwhile; ?>
+                    <option <?= isset($_SESSION['filter']['cate_id']) &&
+                                ($_SESSION['filter']['cate_id'] === $row['id']) ? "selected" : "" ?> value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+                <?php endforeach; ?>
             </select>
             <button name="filter">Lọc</button>
         </form>
@@ -116,14 +111,14 @@ $categories = getWhere("category", "status = '1'");
             <tr>
                 <th>#</th>
                 <th>Ảnh</th>
-                <th>Danh sách bài viết</th>
+                <th>Danh mục</th>
                 <th>Tên bài viết</th>
                 <th>Ngày tạo</th>
                 <th colspan="2">Thao tác</th>
             </tr>
             <?php
             $stt = 1;
-            while ($row = mysqli_fetch_assoc($result)) :
+            foreach ($result as $row) :
             ?>
                 <tr>
                     <td><?= $stt ?></td>
@@ -144,7 +139,7 @@ $categories = getWhere("category", "status = '1'");
                     </td>
                 </tr>
             <?php $stt++;
-            endwhile; ?>
+            endforeach; ?>
         </table>
     </div>
     <?php require "./layouts/pagination.php"; ?>

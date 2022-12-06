@@ -1,6 +1,7 @@
 <?php
 
-$result = getWhere("category", "status = 1 ORDER BY id desc");
+$result = select(["category"], ['*'], "status = 1");
+
 ?>
 <div class="content">
   <div class="section-heading">
@@ -21,7 +22,7 @@ $result = getWhere("category", "status = 1 ORDER BY id desc");
       </tr>
       <?php
       $stt = 1;
-      while ($row = mysqli_fetch_assoc($result)) :
+      foreach ($result as $row) :
       ?>
         <tr>
           <td><?= $stt ?></td>
@@ -39,7 +40,7 @@ $result = getWhere("category", "status = 1 ORDER BY id desc");
           </td>
         </tr>
       <?php $stt++;
-      endwhile; ?>
+      endforeach; ?>
     </table>
   </div>
 </div>

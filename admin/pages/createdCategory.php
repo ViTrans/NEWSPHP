@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!preg_match($pattern, $name)) {
       $error = "tên danh mục không hợp lệ";
     } else {
-      $row =  getWhere("category", "title = '$name' and status = 1  ", ['title'])->num_rows;
-      if ($row > 0) {
+      $row =  select(["category"], ['*'], "title = '$name' and status = 1  ");
+      if (!empty($row)) {
         $error = "tên danh mục đã tồn tại";
         setMsg("created_cate", "Tên danh mục đã tồn tại", "error");
       }
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
   if (empty($error)) {
-    insert("category", ['title', "status"], [$name, "1"]);
+    insert("category", ['title' => $name, "status" => 1]);
     setMsg("created_cate", "Thêm thành công danh mục");
     redirect("?page=danhsachdanhmuc");
   }

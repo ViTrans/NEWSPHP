@@ -33,36 +33,79 @@ function validateInputInt($name, $input = true, $min = 1, $max = 10000)
         filter_input(INPUT_GET, $name, FILTER_VALIDATE_INT, ["options" => ["min_ranger" => $min, "max_ranger" => $max]]);
 }
 
-function findById($table, $id)
+
+function activeLink($arr = [])
 {
-    global $con;
-    $sql = "SELECT *  FROM $table WHERE id = '$id' LIMIT 1";
-    return mysqli_query($con, $sql);
+    global $page;
+    if (empty($arr)) return;
+
+    if (in_array($page, $arr)) return "active";
+
+    return;
 }
 
+// ============================================ END Filter input =================================================
 
 
-function insert($table, $col, $value)
+
+
+
+// thao tác với CSDL
+
+
+
+
+function insert($table, $data = [])
 {
     global $con;
-    $col = implode(",", $col);
-    $value = implode("','", $value);
-    $sql = "INSERT INTO `$table` ($col) VALUES ('$value')";
-    return mysqli_query($con, $sql);
+
+
+    $col = implode(",", array_keys($data));
+    $values = implode("','", $data);
+    $sql = "INSERT INTO `$table` ($col) VALUES ('$values')";
+    mysqli_query($con, $sql);
+    return $con->affected_rows;
 }
-function updated($table, $values, $condition)
+
+function updated($table, $data = [], $condition)
 {
     global $con;
-    $sql = "UPDATE  `$table` set $values WHERE $condition";
-    return  mysqli_query($con, $sql);
+
+    $keyValues = [];
+    foreach ($data as $key => $value) {
+        $keyValues[] = $key . "=" . "'$value'";
+    }
+
+    $fileds = implode(',', $keyValues);
+    $sql = "UPDATE  `$table` set $fileds WHERE $condition";
+    mysqli_query($con, $sql);
+    return $con->affected_rows;
 }
 
-function getWhere($table, $condition, $col = ['*'], $limit = "")
-{
+function select(
+    $table = [],
+    $select = ['*'],
+    $condition = 1,
+    $orderBy = [
+        "id" => "DESC"
+    ],
+    $limit = ""
+) {
     global $con;
-    $col = implode(',', $col);
-    $sql = "SELECT  $col FROM $table where $condition " . (!empty($limit) ? "LIMIT " . $limit : "");
-    return mysqli_query($con, $sql);
+
+    $select = implode(',', $select);
+    $table = implode(',', $table);
+
+    $dataSort = [];
+    foreach ($orderBy as $col => $sort) {
+        $dataSort[] = $col . " " . $sort;
+    };
+    $dataSort = implode(",", $dataSort);
+
+    $sql = "SELECT  $select FROM $table where $condition ORDER BY  $dataSort" . (!empty($limit) ? "LIMIT " . $limit : "");
+
+    $result = mysqli_query($con, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
 
@@ -163,7 +206,37 @@ function handleFileUpload($file, $option = "post")
     return $fileNew;
 }
 
+function  getCurrentDateTime()
+{
+    return date("Y-m-d H:i:s", time());
+}
 
+function filterData($name)
+{
+    if (!isset($_SESSION[$name])) {
+        return;
+    }
+
+    $sql = "";
+    foreach ($_SESSION[$name] as $field => $value) {
+        if ($field == "name") {
+            if ($value) {
+                $sql = "tensp LIKE '%$value%' ";
+            }
+        } else {
+            if ($value) {
+                $sql .= (!empty($sql) ? "and " : "") . "loaihang.id = '$value'";
+            }
+        }
+    }
+    return $sql;
+}
+
+function query($sql)
+{
+    global $con;
+    return mysqli_query($con, $sql);
+}
 
 
 

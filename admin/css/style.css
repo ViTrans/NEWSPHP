@@ -189,7 +189,7 @@ main {
   position: relative;
   width: calc(100% - 240px);
   top: 0;
-  height: 100vh;
+  height: 100%;
   left: 240px;
   transition: var(--smooth);
 }
@@ -240,7 +240,7 @@ main .top-header {
 
 .content {
   background-color: #f4f7fa;
-  height: calc(100vh);
+  height: 100%;
   padding: 15px 15px 5px 15px;
 }
 
@@ -324,6 +324,9 @@ table td {
   padding: 6px 14px;
   text-align: center;
   transition: var(--smooth);
+  line-height: 1.4;
+  max-width: 260px;
+  min-height: 60px;
 }
 table th {
   background-color: #eeee;
@@ -387,7 +390,8 @@ tr:hover td {
 }
 
 .form-editing .form-input:focus {
-  border-color: #333;
+  box-shadow: rgba(45, 85, 255, 0.2) 0px 2px 8px 0px;
+  border-color: #007bff;
 }
 
 .form-editing .form-group .error-msg {
@@ -411,9 +415,13 @@ tr:hover td {
 }
 
 .form-editing .form-group {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
+  gap: 10px; */
+  display: flex;
+  align-items: center;
   gap: 10px;
+  justify-content: space-between;
 }
 
 .form-editing .submit-button {
@@ -421,6 +429,7 @@ tr:hover td {
   font-weight: 600;
   font-size: 20px;
   color: #fff;
+  min-width: 160px;
   background-color: #0275d8;
   border-radius: 8px;
   transition: var(--smooth);
@@ -445,13 +454,15 @@ tr:hover td {
   border: 1px solid #333;
   border-radius: 4px;
 }
+
 .post-form button {
   text-transform: uppercase;
   letter-spacing: 0.6px;
+  font-size: 16px;
   display: inline-block;
   padding: 1rem 1.4rem;
   border-radius: 4px;
-  min-width: 60px;
+  min-width: 80px;
   background-color: #0275d8;
   color: #fff;
   font-weight: 600;
@@ -462,6 +473,12 @@ tr:hover td {
 }
 .post-form input:focus {
   border: 1px solid #00040a;
+}
+
+.filter_posts .post-form input:focus,
+.filter_posts .post-form select:focus {
+  box-shadow: rgba(45, 85, 255, 0.2) 0px 2px 8px 0px;
+  border-color: #007bff;
 }
 .post-form {
   display: flex;
@@ -545,6 +562,7 @@ tr:hover td {
 }
 
 .pagination {
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -635,8 +653,16 @@ tr:hover td {
     flex-direction: column;
     gap: 14px;
   }
-  .section-heading h2 {
-    text-align: center;
+  .section-heading button {
+    margin-left: initial;
+  }
+  .section-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .post-form {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .card {
@@ -645,6 +671,9 @@ tr:hover td {
 }
 
 @media (max-width: 560px) {
+  .pagination ul {
+    flex-wrap: wrap;
+  }
   .card {
     width: calc(100% - 15px);
   }

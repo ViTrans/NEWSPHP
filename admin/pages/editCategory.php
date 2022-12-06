@@ -2,13 +2,15 @@
 
 $id = validateInputInt("id", false);
 
-// id ko ton tai redirect sang trang ds
 if (empty($id)) {
     setMsg("edit_cate", "danh mục không tồn tại", "error");
     redirect("?page=danhsachdanhmuc");
 } else {
-    $result = getWhere("category", "status = 1 and id = '$id'");
-    if ($result->num_rows == 0) {
+
+    $result =
+        select(["category"], ['*'], "status = 1 and id = '$id' ")[0];
+
+    if (empty($result)) {
         setMsg("edit_cate", "danh mục không tồn tại", "error");
         redirect("?page=danhsachdanhmuc");
     }
@@ -18,7 +20,6 @@ if (empty($id)) {
 
 
 
-$row = mysqli_fetch_assoc($result);
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (empty($error)) {
-        updated("category", "title = '$name'", "id = '$id'");
+        updated("category", ['title' => $name], "id = '$id'");
         setMsg("edit_cate", "Sửa thành công danh mục");
         redirect("?page=danhsachdanhmuc");
     }
@@ -60,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST">
                 <div class="form-group">
                     <label class="form-label">Tên danh mục <span>*</span></label>
-                    <input value="<?= $row['title'] ?? "" ?>" class="form-input" name="name" type="text" placeholder="Tên danh mục..." />
+                    <input value="<?= $result['title'] ?? "" ?>" class="form-input" name="name" type="text" placeholder="Tên danh mục..." />
                 </div>
                 <div class="form-group spacing">
                     <span class="form-label">&nbsp;</span>
