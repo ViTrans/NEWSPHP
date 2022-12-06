@@ -568,6 +568,18 @@ footer ul li a:hover {
   footer p {
     padding-bottom: 10px;
   }
+  .post-related .post-list{
+    display: flex;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 25px;
+    column-gap: 20px;
+    overflow-x: auto;
+  }
+  .post-related .post-list .post-item{
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+  }
 }
 /* post comment */
 .post-comment {
