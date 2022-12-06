@@ -8,7 +8,7 @@ $folder_path = '../uploads/';
 $file_path =  $folder_path . basename($_FILES['avatar']['name']);
 $flag_ok = true;
 $file_type = strtolower(pathinfo($file_path,PATHINFO_EXTENSION));
-if(isset($_POST["username"])) {
+if(isset($_POST["avatar"])) {
     $check = getimagesize($_FILES["avatar"]["tmp_name"]);
     if($check !== false) {
     //   echo "File is an image - " . $check["mime"] . ".";
@@ -120,7 +120,7 @@ if(isset($_POST['username'])){
                     <div class="text-field">
                         <label>Ảnh Đại Diện</label>
                         <input type="file" name="avatar" />
-                        <?php echo (isset($err['avatar']))? $err['avatar'] : '' ?>
+                        <span class="error"><?php echo (isset($err['avatar']))? $err['avatar'] : '' ?></span>
                     </div>
                     <div class="text-field">
                         <label for="gender">Giới Tính</label>
