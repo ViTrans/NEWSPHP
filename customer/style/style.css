@@ -38,9 +38,34 @@ html {
 }
 body {
   font-family: "Roboto", sans-serif;
+  background-color: var(--lightMode);
+  color: var(--black);
+}
+:root{
+  --white : #fff;
+  --black : #000;
+  --primary : #ff6464;
+  --gray : #333;
+  --light : #eee;
+  --gray2 : #999;
+  --darkMode : #1e2028; 
+  --lightMode : #fff;
+  --gray3 :#D6D5A8;
+  --grayTable : #f6f6f6;
+  --border : #e5e5e5;
+}
+[data-theme ='dark']{
+  --white : #000;
+  --black : #fff;
+  --primary : #ff6464;
+  --gray : #fff;
+  --light : #333;
+  --lightMode : #1e2028;
+  --grayTable : #333;
+  --border : #333;
 }
 .navbar {
-  background-color: #fff;
+  background-color: var(--lightMode);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px 40px;
   display: flex;
@@ -55,7 +80,7 @@ body {
   text-decoration: none;
 }
 .navbar a {
-  color: #333;
+  color: var(--gray);
   text-decoration: none;
 }
 .logo-image {
@@ -73,7 +98,7 @@ body {
 }
 .menu a {
   text-decoration: none;
-  color: #333;
+  color: var(--gray);
   font-size: 1.1rem;
   font-weight: 500;
   transition: 0.1s linear;
@@ -83,13 +108,13 @@ body {
   position: absolute;
   top: 70%;
   width: 50%;
-  background-color: #fff;
+  background-color: var(--lightMode);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1;
   display: none;
 }
 .menu ul li {
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
 }
 .menu li:hover ul {
   display: grid;
@@ -97,7 +122,7 @@ body {
   text-align: center;
 }
 .menu ul li:hover {
-  background-color: #f1f1f1;
+  background-color: var(--lightMode);
 }
 .menu-link {
   display: flex;
@@ -114,10 +139,10 @@ body {
   transition: 0.2s linear;
 }
 .menu a:hover {
-  color: #ff6464;
+  color: var(--primary);
 }
 .menu a.active {
-  color: #ff6464;
+  color: var(--primary);
 }
 .menu-item {
   display: flex;
@@ -126,14 +151,14 @@ body {
   gap: 10px;
 }
 .menu-item:hover .menu-link {
-  color: #ff6b81;
+  color: var(--primary);
 }
 .account li {
   list-style: none;
 }
 .account a {
   text-decoration: none;
-  color: #333;
+  color: var(--gray);
   font-size: 1.1rem;
   font-weight: 500;
   transition: 0.1s linear;
@@ -144,7 +169,7 @@ body {
   right: 5px;
   width: 10%;
   transform: translateY(10%);
-  background-color: #fff;
+  background-color: var(--lightMode);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1;
   display: none;
@@ -153,7 +178,7 @@ body {
   display: block;
 }
 .account ul li {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
   padding: 5px;
 }
 .btn {
@@ -165,14 +190,24 @@ body {
   transition: 0.3s linear;
 }
 .btn-account {
-  background-color: #ff6b81;
   font-size: 1.1rem;
   font-weight: 500;
-  color: #fff !important;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.btn-account:hover {
-  background-color: #ff8fa3;
+.btn-account i{
+  color: var(--black);
+
 }
+/* .btn-account:hover {
+  background-color: black;
+  color: white;
+} */
 .account img {
   width: 50px;
   height: 50px;
@@ -199,12 +234,12 @@ body {
   width: 15px;
   height: 15px;
   border-radius: 100rem;
-  background-color: white;
+  background-color: var(--white);
   cursor: pointer;
   transition: background-color 0.25s linear;
 }
 .slider-dots li.active {
-  background-color: white;
+  background-color: var(--white);
 }
 .slider-wrapper {
   width: 100%;
@@ -264,7 +299,7 @@ body {
 .post-category {
   display: inline-block;
   padding: 5px 10px;
-  color: white;
+  color: var(--white);
   margin-bottom: 10px;
   border-radius: 10px;
   background-color: rgb(67, 170, 139);
@@ -286,14 +321,14 @@ body {
   font-size: 18px;
   margin-bottom: 10px;
   display: block;
-  color: black;
+  color: var(--black);
   text-transform: capitalize;
 }
 
 .post-desc {
   font-weight: 300;
   font-size: 14px;
-  color: #999;
+  color: var(--gray2);
   margin-bottom: 20px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -338,7 +373,7 @@ h6 {
 
 .post-author-time {
   font-size: 12px;
-  color: #999;
+  color: var(--gray2);
   font-weight: 300;
 }
 
@@ -379,8 +414,8 @@ h6 {
 
 /* footer */
 footer {
-  color: #000000;
-  border-top: 2px solid #eaeaea;
+  color: var(--black);
+  border-top: 2px solid var(--light);
   max-width: 960px;
   margin: 0 auto;
   padding: 20px;
@@ -402,7 +437,7 @@ footer ul li {
   font-weight: 500;
 }
 footer ul li a {
-  color: #000000;
+  color: var(--black);
   text-decoration: none;
   transition: all 0.3s linear;
 }
@@ -481,7 +516,7 @@ footer ul li a:hover {
   margin-bottom: 1rem;
   padding: 1rem;
   border-left: 5px solid #ff6464;
-  background-color: #f5f5f5;
+  background-color: var(--lightMode);
 }
 .post-details-content .post-content-item img {
   width: 100%;
@@ -499,18 +534,21 @@ footer ul li a:hover {
   margin-bottom: 1rem;
 }
 .post-details-content .post-content-item table th {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   padding: 0.5rem;
 }
 .post-details-content .post-content-item table td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   padding: 0.5rem;
 }
 .post-details-content .post-content-item table tr:nth-child(even) {
-  background-color: #f5f5f5;
+  background-color: var(--grayTable);
 }
 .post-details-content .post-content-item table tr:nth-child(odd) {
-  background-color: #fff;
+  background-color: var(--lightMode);
+}
+.menu-icon{
+  display: none;
 }
 
 @media screen and (max-width: 1023px) {
@@ -568,11 +606,7 @@ footer ul li a:hover {
   footer p {
     padding-bottom: 10px;
   }
-<<<<<<< Updated upstream
-  .post-related .post-list{
-=======
   .post-related .post-list {
->>>>>>> Stashed changes
     display: flex;
     width: 100%;
     scroll-snap-type: x mandatory;
@@ -580,11 +614,7 @@ footer ul li a:hover {
     column-gap: 20px;
     overflow-x: auto;
   }
-<<<<<<< Updated upstream
-  .post-related .post-list .post-item{
-=======
   .post-related .post-list .post-item {
->>>>>>> Stashed changes
     flex: 0 0 300px;
     scroll-snap-align: start;
   }
@@ -606,7 +636,7 @@ footer ul li a:hover {
 .post-comment__form form .form-group textarea {
   width: 100%;
   height: 200px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--light);
   border-radius: 8px;
   padding: 1rem;
   resize: none;
@@ -633,7 +663,7 @@ footer ul li a:hover {
 }
 .post-comment__list .post-comment__item__content {
   padding: 1rem;
-  background-color: #eee;
+  background-color: var(--light);
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   flex: 1;
@@ -650,14 +680,19 @@ footer ul li a:hover {
   margin-right: 1rem;
 }
 .post-comment__list .post-comment__item__content__info .date {
-  color: #999;
+  color: var(--gray2);
 }
 .post-comment__list .post-comment__item__content__text {
-  color: #333;
+  color: var(--gray);
+}
+.post-comment__form form .form-group textarea{
+  background-color: var(--lightMode);
+  color: var(--gray);
+  border: 1px solid var(--border);
 }
 .form-group button {
   border: none;
-  color: white;
+  color: var(--white);
   background-color: #ff6464;
   padding: 15px 30px;
   border-radius: 8px;
@@ -674,7 +709,7 @@ footer ul li a:hover {
   right: 0;
 }
 .post-comment__action a {
-  color: #ff6464;
+  color: var(--primary);
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
@@ -705,13 +740,15 @@ footer ul li a:hover {
   font-weight: 600;
 }
 .form-profile .text-field input {
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray2);
   border-radius: 8px;
   padding: 1rem;
+  background-color: var(--lightMode);
+  color: var(--black);
 }
 .form-profile button {
   border: none;
-  color: white;
+  color: var(--white);
   background-color: #ff6464;
   padding: 15px 30px;
   border-radius: 8px;
@@ -740,13 +777,13 @@ footer ul li a:hover {
   transform: translate(-50%, -50%);
 }
 .show-more-btn .btn-primary {
-  color: white;
+  color: var(--white);
   background-color: rgb(67, 170, 139);
 }
 .sroll-to-top svg {
   width: 50px;
   height: 50px;
-  color: white;
+  color: var(--white);
   background-color: #ff6464;
   cursor: pointer;
   padding: 15px;
@@ -754,4 +791,21 @@ footer ul li a:hover {
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+.icon-darkmode{
+  width: 50px;
+  height: 50px;
+  color: var(--black);
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }

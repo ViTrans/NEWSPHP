@@ -91,11 +91,7 @@ if(isset($_POST['username'])){
                 <div class="text-field">
                     <label for="avatar">Ảnh Đại Diện</label>
                     <input type="file" name="avatar" value="<?php echo $row['avatar']?>" />
-<<<<<<< Updated upstream
-                    <input type="hidden" value="<?php echo $row['avatar']?>">
-=======
                     <input type="hidden" name="cloneavatar" value="<?php echo $row['avatar']?>" />
->>>>>>> Stashed changes
                     <?php echo (isset($err['avatar']))? $err['avatar'] : '' ?>
                 </div>
                 <!-- <div class="text-field">

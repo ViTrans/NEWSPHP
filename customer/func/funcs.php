@@ -42,18 +42,12 @@ function postComments ($con,$post_id,$user_id,$content,$created_at){
     $sql = "INSERT INTO `comments` (`id`, `post_id`, `user_id`, `content`, `created_at`, `updated_at`, `status`) VALUES (NULL, '$post_id', '$user_id', '$content', '$created_at', '2022-11-10 14:09:22.000000', '0');";
     return mysqli_query($con,$sql);
 }
-<<<<<<< Updated upstream
 function postRelated($con, $id, $idPost)
 {
     $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id)
      AS category_name FROM posts WHERE category_id = $id and status = 1 and NOT posts.id = $idPost  LIMIT 3";
     return mysqli_query($con, $sql);
-=======
-function postRelated($con,$id,$idPost){
-    $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id)
-     AS category_name FROM posts WHERE category_id = $id and status = 1 and NOT posts.id = $idPost  LIMIT 3";
-    return mysqli_query($con,$sql);
->>>>>>> Stashed changes
+
 }
 function signup($con,$username,$email,$password,$avatar,$birthday,$gender){
     $sql = "INSERT INTO `users` (`id`, `email`, `username`, `password`, `avatar`, `birthday`, `gender`, `status`) VALUES (NULL, '$email', '$username', '$password', '$avatar', '$birthday', '$gender', '0');";

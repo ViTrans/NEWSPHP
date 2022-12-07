@@ -43,3 +43,23 @@ $(document).on("click", ".btn-primary", function () {
     },
   });
 });
+const iconDarkMode = document.querySelector(".icon-darkmode");
+const currentTheme = localStorage.getItem("theme");
+if(currentTheme ){
+  document.documentElement.setAttribute("data-theme", currentTheme);
+  if(currentTheme === "dark"){
+    iconDarkMode.classList.add("active");
+  }
+}
+iconDarkMode.addEventListener("click", function () {
+  if (currentTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
+    iconDarkMode.classList.remove("active");
+  } else {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
+    iconDarkMode.classList.add("active");
+  }
+}
+);
