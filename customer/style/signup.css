@@ -46,7 +46,12 @@ h6 {
   --secondary-color: #f6e3c5;
   --grey-secondary-color: #999;
 }
-
+[data-theme ='dark']{
+  --primary-color: #fff;
+  --light-color: #ed6663;
+  --secondary-color: #1a1a40;
+  --grey-secondary-color: #999;
+}
 .container-fluid {
   max-width: 1200px;
   width: 100%;

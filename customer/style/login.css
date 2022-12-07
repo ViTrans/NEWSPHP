@@ -46,6 +46,12 @@ h6 {
   --secondary-color: #f6e3c5;
   --grey-secondary-color: #999;
 }
+[data-theme ='dark']{
+  --primary-color: #1a1a40;
+  --light-color: #ed6663;
+  --secondary-color: #f6e3c5;
+  --grey-secondary-color: #999;
+}
 
 body {
   font-family: "Roboto", sans-serif;
