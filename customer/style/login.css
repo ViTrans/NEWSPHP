@@ -40,19 +40,13 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-:root {
-  --primary-color: #1a1a40;
-  --light-color: #ed6663;
-  --secondary-color: #f6e3c5;
-  --grey-secondary-color: #999;
+
+:root{
+  --primaryBtn : #1a1a40;
 }
 [data-theme ='dark']{
-  --primary-color: #1a1a40;
-  --light-color: #ed6663;
-  --secondary-color: #f6e3c5;
-  --grey-secondary-color: #999;
+  --primaryBtn : #ff6464;
 }
-
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -72,60 +66,62 @@ body {
   font-size: 40px;
   padding-top: 50px;
   text-align: center;
-  color: var(--primary-color);
+  color: var(--black);
 }
 .login {
   display: flex;
   justify-content: space-around;
   padding-bottom: 50px;
 }
-.signin-main {
+.login-main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 500px;
-  border-right: 1px solid var(--grey-secondary-color);
+  border-right: 1px solid var(--border);
   padding: 0 20px;
+  margin: 50px 0;
 }
-.form-sign {
+.login-main .form-sign {
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 100%;
 }
-.text-field {
+.login-main .text-field {
   display: flex;
   flex-direction: column;
 }
-.text-field .error {
+.login-main .text-field .error {
   color: red;
   font-size: 12px;
   padding: 0 10px;
 }
-.form-sign input {
+.login-main .form-sign input {
   outline: none;
   border: none;
-  border-bottom: 1px solid var(--grey-secondary-color);
+  border-bottom: 1px solid var(--border);
   padding: 10px;
   font-size: 20px;
-  color: var(--primary-colorr);
+  color : var(--black);
+  background-color: var(--lightMode);
 }
-.form-sign label {
+.login-main .form-sign label {
   font-size: 18px;
   font-weight: bold;
 }
-.form-sign button {
+.login-main .form-sign button {
   padding: 10px 30px;
   border: none;
   outline: none;
-  background-color: var(--primary-color);
+  background-color: var(--primaryBtn);
   color: white;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   width: 100%;
 }
-.signup-main {
+.login_main-right {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -133,25 +129,109 @@ body {
   padding-left: 20px;
   gap: 10px;
 }
-.signup-main button {
+.login_main-right button {
   padding: 10px 30px;
   border: none;
   outline: none;
-  background-color: var(--primary-color);
+  background-color: var(--primaryBtn);
   color: white;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   width: 100%;
 }
-@media screen and (max-width: 767.98px) {
+
+
+/* sign up */
+.signup {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 50px;
+}
+.signup-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 800px;
+  padding: 0 20px;
+  margin-bottom: 50px;
+}
+.signup-main .form-sign {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.signup-main .text-field {
+  display: flex;
+  flex-direction: column;
+}
+.signup-main .text-field .error {
+  color: red;
+  font-size: 12px;
+  padding: 0 10px;
+}
+.signup-main .text-field select {
+  width: 300px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 14px;
+  color: var(--black);
+  font-weight: bold;
+  margin-bottom: 20px;
+  background-color: var(--lightMode);
+}
+.signup-main .form-sign input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 10px;
+  font-size: 20px;
+  color: var(--black);
+  background-color: var(--lightMode);
+}
+.signup-main .form-sign label {
+  font-size: 18px;
+  font-weight: bold;
+}
+.signup-main .form-sign button {
+  padding: 10px 30px;
+  border: none;
+  outline: none;
+  background-color: var(--primaryBtn);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+@media screen and (max-width: 1023.98px) {
+  .container-fluid {
+    padding: 0 10px;
+  }
+  .container {
+    padding: 0 10px;
+  }
+    
+  .signup-main {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .signup-main .form-sign select {
+    width: 100%;
+  }
+  .signup-main .form-sign input {
+    width: 100%;
+  }
   .login {
     flex-direction: column;
   }
-  .signin-main {
+  .login-main {
     width: 100%;
   }
-  .signup-main {
+  .login_main-right {
     width: 100%;
   }
 }
