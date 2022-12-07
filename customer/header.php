@@ -38,7 +38,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
                 </ul>
             </div>
             <?php } else { ?>
-            <a class="btn btn-account" href="./login.php">
+            <a class="btn btn-account" href="?url=login.php">
                 <i class="fa-solid fa-user"></i>
             </a>
             <?php } ?>

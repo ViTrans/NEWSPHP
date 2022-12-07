@@ -38,8 +38,15 @@ if(isset($_POST['username'])){
         $username = $_POST['username'];
         $email = $_POST['email'];
         $avatar = $_FILES['avatar']['name'];
+        if(empty($avatar)){
+            $avatar = $row['avatar'];
+        }
         $birthday = $_POST['birthday'];
-        $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
+        if(strcmp($_POST['password'],$row['password']) == 0){
+            $password = $row['password'];
+        }else{
+            $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
+        }
         $sql = "UPDATE users SET username = '$username', email = '$email', avatar = '$avatar', birthday = '$birthday', password = '$password' WHERE id = '$id'";
         $re = mysqli_query($con,$sql);
         if($re){
@@ -53,7 +60,7 @@ if(isset($_POST['username'])){
     }
 ?>
 <main>
-    <section class="login container">
+    <section class="container">
         <div class="profile-main">
             <h3 class="headding">Thông Tin Cá Nhân</h3>
             <form class="form-profile" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
