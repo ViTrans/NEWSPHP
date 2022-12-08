@@ -4,23 +4,23 @@
 
 $id = validateInputInt("id", false);
 if (empty($id)) {
-    setMsg("edit_post", "không tồn tại bài viết", "error");
     redirect("?page=danhsachbaiviet");
 }
 
 
-$post = getWhere("posts,category", "posts.status = 1 and posts.id = '$id' and category.id=posts.category_id", ["category.id as cate_id , category.title as cate_title,posts.*"]);
+$post = select(
+    ["posts", "category"],
+    ["category.id as cate_id", "category.title as cate_title ", "posts.*"],
+    "posts.status = 1 and posts.id = '$id' and category.status = 1
+ and category.id=posts.category_id"
+)[0];
 
-if ($post->num_rows <= 0) {
-    setMsg("edit_post", "không tồn tại bài viết", "error");
+if (empty($post)) {
     redirect("?page=danhsachbaiviet");
 }
 
-$result = mysqli_fetch_all($post, MYSQLI_ASSOC)[0];
-$categories = getWhere("category", "status = '1'");
 
-
-
+$categories = select(["category"], ['*'], "status = '1'");
 
 
 
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file = handleFileUpload($_FILES['img']);
         if (is_array($file)) {
             $path = $file[0];
+            unlink($post['img']);
         } else {
             $errors['img'] =  $file;
         }
@@ -49,12 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    if ($cate == false || $cate == null) {
+    if (!is_numeric($cate)) {
         $errors['cate'] = "vui lòng  chọn danh mục";
     }
 
 
-    if (!isset($featured) && $featured != false) {
+    if (!is_numeric($featured)) {
         $errors['featured'] = "vui lòng chọn trường nổi bật";
     }
 
@@ -80,9 +81,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($errors)) {
 
-        updated("posts", "featured = $featured ,img = '$path' ,title = '$title'
-        ,description = '$description', category_id = '$cate' ,updated_at = '"
-            . date("Y-m-d H:i:s", time()) . "'", "id = '$id'");
+
+
+        updated(
+            "posts",
+            [
+                'featured' => $featured,
+                'img' => $path,
+                'title' => $title,
+                'description' => $description,
+                'category_id' => $cate,
+                'updated_at' => getCurrentDateTime(),
+            ],
+            "id = '$id'"
+        );
         setMsg("edit_post", "Sửa thành công bài viết");
         redirect("?page=danhsachbaiviet");
     } else {
@@ -108,10 +120,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <select name="cate_id" class="form-input">
                         <option value="">[--Chọn tên danh mục--]</option>
                         <?php
-                        while ($cate = mysqli_fetch_assoc($categories)) :
+                        foreach ($categories as $result) :
                         ?>
-                            <option <?= $result['cate_id'] == $cate['id'] ? "selected" : false ?> value="<?= $cate['id'] ?>"><?= $cate['title'] ?></option>
-                        <?php endwhile; ?>
+                            <option <?= $result['id'] == $post['cate_id'] ? "selected" :
+                                        false ?> value="<?= $result['id'] ?>"><?= $result['title'] ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group spacing">
@@ -120,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label class="form-label">Tên bài viết <span>*</span></label>
-                    <input value="<?= $result["title"] ?>" class="form-input" name="title" type="text" placeholder="Tên bài viết..." />
+                    <input value="<?= $post["title"] ?>" class="form-input" name="title" type="text" placeholder="Tên bài viết..." />
                 </div>
                 <div class="form-group spacing">
                     <span class="form-label">&nbsp;</span>
@@ -128,8 +141,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label class="form-label">Mổ tả bài viết <span>*</span></label>
-                    <div id="editor-wrap ">
-                        <textarea name="description" id="editor"><?= $result["description"] ?></textarea>
+                    <div id="editor-wrap">
+                        <textarea name="description" id="editor"><?= $post["description"] ?></textarea>
                     </div>
                 </div>
                 <div class="form-group spacing">
@@ -141,8 +154,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="row">
                         <input class="form-input" type="file" name="img">
-                        <img src="<?= $result["img"] ?>" alt="">
-                        <input value="<?= $result["img"] ?>" type="hidden" name="path">
+                        <img src="<?= $post["img"] ?>" alt="">
+                        <input value="<?= $post["img"] ?>" type="hidden" name="path">
                     </div>
                 </div>
                 <div class="form-group spacing">
@@ -153,8 +166,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label class="form-label">Nổi bật <span>*</span></label>
                     <select name="featured" class="form-input">
                         <option value="">[--Chọn--]</option>
-                        <option <?= $result['featured'] === '1' ? "selected" : false ?> value="1">Yes</option>
-                        <option <?= $result['featured'] === '0' ? "selected" : false ?> value="0">No</option>
+                        <option <?= $post['featured'] == '1' ? "selected" : false ?> value="1">Yes</option>
+                        <option <?= $post['featured'] == '0' ? 'selected' : false ?> value="0">No</option>
                     </select>
                 </div>
                 <div class="form-group spacing">

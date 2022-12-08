@@ -7,8 +7,8 @@ if (empty($id)) {
     redirect("?page=danhsachdanhmuc");
 } else {
 
-    updated("category", "status = 0", "id='$id'");
-    if (mysqli_affected_rows($con) <= 0) {
+    $row = updated("category", ['status' => 0], "id='$id'");
+    if ($row <= 0) {
         setMsg("del_cate", "không tồn tại danh mục");
         redirect("?page=danhsachdanhmuc", "error");
     } else {

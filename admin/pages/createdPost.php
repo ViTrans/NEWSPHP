@@ -1,6 +1,6 @@
 <?php
 
-$categories = getWhere("category", "status = '1'");
+$categories = select(["category"], ['*'], "status = '1'");
 
 
 
@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $errors['img'] =  $file;
   }
-  if ($cate == false || $cate == null) {
+  if (!is_numeric($cate)) {
     $errors['cate'] = "vui lòng  chọn danh mục";
   }
 
 
-  if (!isset($featured) && $featured != false) {
+  if (!is_numeric($featured)) {
     $errors['featured'] = "vui lòng chọn trường nổi bật";
   }
 
@@ -45,8 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!preg_match($pattern, $title)) {
       $errors['title'] = "tên bài viết không hợp lệ";
     } else {
-      $row =  getWhere("posts", "title = '$title'", ['title'])->num_rows;
-      if ($row > 0) {
+      $row =  select(["posts"], ['*'], "title = '$title'");
+      if (!empty($row)) {
         $errors['title'] = "tên bài viết đã tồn tại";
       }
     }
@@ -58,11 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($errors)) {
 
     insert("posts", [
-      'title', "description", 'category_id', 'featured', 'img',
-      'created_at', 'updated_at'
-    ], [
-      $title, $description, $cate, $featured, $patch,
-      date("Y-m-d H:i:s", time()), date("Y-m-d H:i:s", time())
+      'title' => $title, "description" => $description, 'category_id' => $cate, 'featured' => $featured,
+      'img' => $patch,
+      'created_at' => getCurrentDateTime(), 'updated_at' => getCurrentDateTime()
     ]);
 
     setMsg("created_post", "Thêm thành công bài viết");
@@ -77,81 +75,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <div class="content">
-    <div class="section-heading">
-        <h2>Thêm bài viết</h2>
-        <?php displayMsg("created_post") ?>
-        <button><a href="?page=danhsachbaiviet">Quay lại</a></button>
-    </div>
-    <div>
-        <div class="form-editing">
-            <form method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label class="form-label">Tên danh mục <span>*</span></label>
-                    <select name="cate_id" class="form-input">
-                        <option value="">[--Chọn tên danh mục--]</option>
-                        <?php
-            while ($row = mysqli_fetch_assoc($categories)) :
+  <div class="section-heading">
+    <h2>Thêm bài viết</h2>
+    <?php displayMsg("created_post") ?>
+    <button><a href="?page=danhsachbaiviet">Quay lại</a></button>
+  </div>
+  <div>
+    <div class="form-editing">
+      <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label class="form-label">Tên danh mục <span>*</span></label>
+          <select name="cate_id" class="form-input">
+            <option value="">[--Chọn tên danh mục--]</option>
+            <?php
+            foreach ($categories as $row) :
             ?>
-                        <option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-                        <?php endwhile; ?>
-                    </select>
-                </div>
-                <div class="form-group spacing">
-                    <span class="form-label">&nbsp;</span>
-                    <div class="error-msg flex-3"><?= $errors['cate'] ?? "" ?></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Tên bài viết <span>*</span></label>
-                    <input class="form-input" name="title" type="text" placeholder="Tên bài viết..." />
-                </div>
-                <div class="form-group spacing">
-                    <span class="form-label">&nbsp;</span>
-                    <div class="error-msg flex-3"><?= $errors['title'] ?? "" ?></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Mô tả bài viết <span>*</span></label>
-                    <div id="editor-wrap ">
-                        <textarea name="description" id="editor"></textarea>
-                    </div>
-                </div>
-                <div class="form-group spacing">
-                    <span class="form-label">&nbsp;</span>
-                    <div class="error-msg flex-3"><?= $errors['description'] ?? "" ?></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Ảnh bài viết <span>*</span></label>
-                    <input class="form-input" type="file" name="img">
-                </div>
-                <div class="form-group spacing">
-                    <span class="form-label">&nbsp;</span>
-                    <div class="error-msg flex-3"><?= $errors['img'] ?? "" ?></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Nổi bật <span>*</span></label>
-                    <select name="featured" class="form-input">
-                        <option value="">[--Chọn--]</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </div>
-                <div class="form-group spacing">
-                    <span class="form-label">&nbsp;</span>
-                    <div class="error-msg flex-3"><?= $errors['featured'] ?? "" ?></div>
-                </div>
-                <div class="form-group">
-                    <span class="form-label">&nbsp;</span>
-                    <button class="flex-3 submit-button">
-                        Thêm
-                    </button>
-                </div>
-            </form>
+              <option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
+        <div class="form-group spacing">
+          <span class="form-label">&nbsp;</span>
+          <div class="error-msg flex-3"><?= $errors['cate'] ?? "" ?></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tên bài viết <span>*</span></label>
+          <input class="form-input" name="title" type="text" placeholder="Tên bài viết..." />
+        </div>
+        <div class="form-group spacing">
+          <span class="form-label">&nbsp;</span>
+          <div class="error-msg flex-3"><?= $errors['title'] ?? "" ?></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mô tả bài viết <span>*</span></label>
+          <div id="editor-wrap">
+            <textarea name="description" id="editor"></textarea>
+          </div>
+        </div>
+        <div class="form-group spacing">
+          <span class="form-label">&nbsp;</span>
+          <div class="error-msg flex-3"><?= $errors['description'] ?? "" ?></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ảnh bài viết <span>*</span></label>
+          <input class="form-input" type="file" name="img">
+        </div>
+        <div class="form-group spacing">
+          <span class="form-label">&nbsp;</span>
+          <div class="error-msg flex-3"><?= $errors['img'] ?? "" ?></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nổi bật <span>*</span></label>
+          <select name="featured" class="form-input">
+            <option value="">[--Chọn--]</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+        <div class="form-group spacing">
+          <span class="form-label">&nbsp;</span>
+          <div class="error-msg flex-3"><?= $errors['featured'] ?? "" ?></div>
+        </div>
+        <div class="form-group">
+          <span class="form-label">&nbsp;</span>
+          <button class="flex-3 submit-button">
+            Thêm
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 </main>
 <script>
-// Enable all default text formats:
-CKEDITOR.replace('editor');
+  // Enable all default text formats:
+  CKEDITOR.replace('editor');
 </script>
 </body>
 

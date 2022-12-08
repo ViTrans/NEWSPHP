@@ -6,8 +6,8 @@ if (empty($id)) {
     setMsg("del_post", "Không tồn tại bài viết này", "error");
     redirect("?page=danhsachbaiviet");
 } else {
-    updated("posts", "status = 0", "id='$id'");
-    if (mysqli_affected_rows($con) <= 0) {
+    $row = updated("posts", ['status' => 0], "id = '$id'");
+    if ($row <= 0) {
         setMsg("del_post", "Không tồn tại bài viết này", "error");
         redirect("?page=danhsachbaiviet");
     } else {
