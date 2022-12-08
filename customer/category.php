@@ -1,6 +1,5 @@
 <?php
 include './func/connect.php';
-// include './func/funcs.php';
 $id = $_GET['id'];
 $result = getPostByCategory($con,$id);
 ?>

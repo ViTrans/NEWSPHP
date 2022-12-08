@@ -1,7 +1,4 @@
 <?php
-// include './func/connect.php';
-// include './func/funcs.php';
-// $re = getCategory($con);
 $err = [];
 if(isset($_POST['username'])){
 $folder_path = '../uploads/';

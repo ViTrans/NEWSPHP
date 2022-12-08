@@ -1,6 +1,5 @@
 <?php
 include './func/connect.php';
-// include './func/funcs.php';
 $result = getFeaturedPost($con);
 ?>
 <div class="container">

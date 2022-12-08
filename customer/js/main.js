@@ -45,14 +45,15 @@ $(document).on("click", ".btn-primary", function () {
 });
 const iconDarkMode = document.querySelector(".icon-darkmode");
 const currentTheme = localStorage.getItem("theme");
-if(currentTheme ){
+if (currentTheme) {
   document.documentElement.setAttribute("data-theme", currentTheme);
-  if(currentTheme === "dark"){
+  if (currentTheme === "dark") {
     iconDarkMode.classList.add("active");
   }
 }
+// toggle dark mode
 iconDarkMode.addEventListener("click", function () {
-  if (currentTheme === "dark") {
+  if (iconDarkMode.classList.contains("active")) {
     document.documentElement.setAttribute("data-theme", "light");
     localStorage.setItem("theme", "light");
     iconDarkMode.classList.remove("active");
@@ -61,5 +62,4 @@ iconDarkMode.addEventListener("click", function () {
     localStorage.setItem("theme", "dark");
     iconDarkMode.classList.add("active");
   }
-}
-);
+});
