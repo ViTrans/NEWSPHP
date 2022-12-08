@@ -7,7 +7,23 @@ require_once './functions.php';
 if (!isset($_SESSION['admin'])) {
     echo "<script>window.location.href='index.php'</script>";
 }
+
+
+
+$page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_SPECIAL_CHARS);
+$pagelist = [
+    "danhsachdanhmuc" => "./pages/category.php",
+    "xoadanhmuc" => "./pages/deleteCategory.php",
+    "xoabaiviet" => "./pages/deletePost.php",
+    "themdanhmuc" => "./pages/createdCategory.php",
+    "suabaiviet" => "./pages/editPost.php",
+    "thembaiviet" => "./pages/createdPost.php",
+    "suadanhmuc" => "./pages/editCategory.php",
+    "danhsachbaiviet" => "./pages/post.php",
+];
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -18,9 +34,7 @@ if (!isset($_SESSION['admin'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.ckeditor.com/4.9.2/full-all/ckeditor.js"></script>
     <script defer src="./js/main.js"></script>
     <link rel="stylesheet" href="css/style.css" />
@@ -46,15 +60,13 @@ if (!isset($_SESSION['admin'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="?page=danhsachdanhmuc"
-                        class="menu-link <?= (isset($_GET['page']) && $_GET['page'] == 'danhsachdanhmuc') ? 'active' : '' ?>">
+                    <a href="?page=danhsachdanhmuc" class="menu-link <?= activeLink($caterogies) ?>">
                         <i class="fa-solid fa-rectangle-list"></i>
                         <span>Danh mục</span>
                     </a>
                 </li>
                 <li>
-                    <a href="?page=danhsachbaiviet"
-                        class="menu-link <?= (isset($_GET['page']) && $_GET['page'] == 'danhsachbaiviet') ? 'active' : '' ?>">
+                    <a href="?page=danhsachbaiviet" class="menu-link <?= activeLink($posts) ?>">
                         <i class="fa-sharp fa-solid fa-book"></i>
                         <span>Bài viết</span>
                     </a>

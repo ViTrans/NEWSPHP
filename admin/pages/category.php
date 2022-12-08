@@ -1,13 +1,15 @@
 <?php
 
-$result = getWhere("category", "status = 1 ORDER BY id desc");
+$result = select(["category"], ['*'], "status = 1");
+
 ?>
 <div class="content">
+  <?php displayMsg("created_cate") ?>
+  <?php displayMsg("del_cate") ?>
+  <?php displayMsg("edit_cate") ?>
   <div class="section-heading">
     <h2>Danh sách danh mục</h2>
-    <?php displayMsg("created_cate") ?>
-    <?php displayMsg("del_cate") ?>
-    <?php displayMsg("edit_cate") ?>
+
     <button><a href="?page=themdanhmuc">Thêm danh mục</a></button>
   </div>
   <div class="data-listtings">
@@ -21,7 +23,7 @@ $result = getWhere("category", "status = 1 ORDER BY id desc");
       </tr>
       <?php
       $stt = 1;
-      while ($row = mysqli_fetch_assoc($result)) :
+      foreach ($result as $row) :
       ?>
         <tr>
           <td><?= $stt ?></td>
@@ -39,7 +41,7 @@ $result = getWhere("category", "status = 1 ORDER BY id desc");
           </td>
         </tr>
       <?php $stt++;
-      endwhile; ?>
+      endforeach; ?>
     </table>
   </div>
 </div>
