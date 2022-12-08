@@ -1,10 +1,6 @@
 <?php include './hero.php';
 $re = getFeaturedPost($con);
-
 $row = mysqli_fetch_all($re, MYSQLI_ASSOC);
-// echo '<pre>';
-// var_dump($row[3]);
-// echo '</pre>';
 ?>
 <div class="container">
     <h2 class="heading">

@@ -1,9 +1,4 @@
 <?php
-// login 
-// include './func/connect.php';
-// include './func/funcs.php';
-// $re = getCategory($con);
-// session_start();
 $err = []; // tạo mảng lưu lỗi
 if(isset($_POST['email'])){ // kiểm tra xem có click vào nút đăng ký hay không
   $email = $_POST['email'];

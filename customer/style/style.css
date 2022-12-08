@@ -299,7 +299,7 @@ body {
 .post-category {
   display: inline-block;
   padding: 5px 10px;
-  color: var(--white);
+  color: white;
   margin-bottom: 10px;
   border-radius: 10px;
   background-color: rgb(67, 170, 139);
@@ -692,7 +692,7 @@ footer ul li a:hover {
 }
 .form-group button {
   border: none;
-  color: var(--white);
+  color: white;
   background-color: #ff6464;
   padding: 15px 30px;
   border-radius: 8px;
@@ -748,7 +748,7 @@ footer ul li a:hover {
 }
 .form-profile button {
   border: none;
-  color: var(--white);
+  color: white;
   background-color: #ff6464;
   padding: 15px 30px;
   border-radius: 8px;
@@ -768,7 +768,7 @@ footer ul li a:hover {
   text-align: center;
   display: block;
   margin: 30px auto;
-  color: black;
+  color: var(--black);
   font-size: 16px;
   font-weight: 600;
   position: absolute;
@@ -777,7 +777,7 @@ footer ul li a:hover {
   transform: translate(-50%, -50%);
 }
 .show-more-btn .btn-primary {
-  color: var(--white);
+  color: white;
   background-color: rgb(67, 170, 139);
 }
 .sroll-to-top svg {
