@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost:3333";
+$servername = "localhost";
 $username = "root";
 $password = "";
-$database = "news6";
+$database = "news";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Create connection
 $con = new mysqli($servername, $username, $password, $database);

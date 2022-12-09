@@ -1,7 +1,7 @@
 <?php
 function getPost($con){
     $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name
-    FROM posts where status = 1  AND featured = 0 limit 3";
+    FROM posts where status = 1  AND featured = 0 order by created_at DESC limit 3";
     return mysqli_query($con,$sql);
 }
 function getCategory($con){
@@ -26,6 +26,10 @@ function getCommentByPostId($con,$id){
     $sql = "SELECT *, (SELECT username FROM users WHERE users.id = comments.user_id) AS user_name ,(SELECT avatar FROM users WHERE users.id = comments.user_id) AS avatar FROM comments WHERE post_id = $id";
     return mysqli_query($con,$sql);
 }
+function totalRecord($con){
+    $sql = "SELECT COUNT(id) AS total FROM posts";
+    return mysqli_query($con,$sql);
+}
 function getProfile($con,$id){
     $sql = "SELECT * FROM users WHERE id = $id";
     return mysqli_query($con,$sql);
@@ -34,8 +38,8 @@ function editProfile($con,$id,$username,$email,$avatar){
     $sql = "UPDATE users SET username = '$username', email = '$email', avatar = '$avatar' WHERE id = $id";
     return mysqli_query($con,$sql);
 }
-function loadMore($con,$id){
-    $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name FROM posts WHERE id > $id and status = 1 AND featured = 0 LIMIT 3";
+function loadMorePostNews($con,$id){
+    $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name FROM posts WHERE status = 1 AND featured = 0 AND posts.id < $id ORDER BY posts.created_at DESC LIMIT 3";
     return mysqli_query($con,$sql);
 }
 function postComments ($con,$post_id,$user_id,$content,$created_at){

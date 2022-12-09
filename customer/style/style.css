@@ -41,28 +41,28 @@ body {
   background-color: var(--lightMode);
   color: var(--black);
 }
-:root{
-  --white : #fff;
-  --black : #000;
-  --primary : #ff6464;
-  --gray : #333;
-  --light : #eee;
-  --gray2 : #999;
-  --darkMode : #1e2028; 
-  --lightMode : #fff;
-  --gray3 :#D6D5A8;
-  --grayTable : #f6f6f6;
-  --border : #e5e5e5;
+:root {
+  --white: #fff;
+  --black: #000;
+  --primary: #ff6464;
+  --gray: #333;
+  --light: #eee;
+  --gray2: #999;
+  --darkMode: #1e2028;
+  --lightMode: #fff;
+  --gray3: #d6d5a8;
+  --grayTable: #f6f6f6;
+  --border: #e5e5e5;
 }
-[data-theme ='dark']{
-  --white : #000;
-  --black : #fff;
-  --primary : #ff6464;
-  --gray : #fff;
-  --light : #333;
-  --lightMode : #1e2028;
-  --grayTable : #333;
-  --border : #333;
+[data-theme="dark"] {
+  --white: #000;
+  --black: #fff;
+  --primary: #ff6464;
+  --gray: #fff;
+  --light: #333;
+  --lightMode: #1e2028;
+  --grayTable: #333;
+  --border: #333;
 }
 .navbar {
   background-color: var(--lightMode);
@@ -174,12 +174,18 @@ body {
   z-index: 1;
   display: none;
 }
-.account:hover ul {
+/* .account:hover ul {
+  display: block;
+} */
+.account ul.active {
   display: block;
 }
 .account ul li {
   border-bottom: 1px solid var(--border);
   padding: 5px;
+}
+.account ul li:last-child {
+  border-bottom: none;
 }
 .btn {
   padding: 10px 20px;
@@ -200,9 +206,8 @@ body {
   align-items: center;
   justify-content: center;
 }
-.btn-account i{
+.btn-account i {
   color: var(--black);
-
 }
 /* .btn-account:hover {
   background-color: black;
@@ -547,13 +552,16 @@ footer ul li a:hover {
 .post-details-content .post-content-item table tr:nth-child(odd) {
   background-color: var(--lightMode);
 }
-.menu-icon{
+.menu-icon {
   display: none;
 }
 
 @media screen and (max-width: 1023px) {
   .menu li:hover ul {
     grid-template-columns: 1fr 1fr;
+  }
+  .menu li {
+    scroll-snap-align: start;
   }
   .navbar {
     padding: 20px;
@@ -685,7 +693,7 @@ footer ul li a:hover {
 .post-comment__list .post-comment__item__content__text {
   color: var(--gray);
 }
-.post-comment__form form .form-group textarea{
+.post-comment__form form .form-group textarea {
   background-color: var(--lightMode);
   color: var(--gray);
   border: 1px solid var(--border);
@@ -792,7 +800,7 @@ footer ul li a:hover {
   bottom: 20px;
   right: 20px;
 }
-.icon-darkmode{
+.icon-darkmode {
   width: 50px;
   height: 50px;
   color: var(--black);
@@ -807,5 +815,4 @@ footer ul li a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }

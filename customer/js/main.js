@@ -63,3 +63,9 @@ iconDarkMode.addEventListener("click", function () {
     iconDarkMode.classList.add("active");
   }
 });
+
+const avatarUser = document.querySelector(".account-img");
+const accountMenu = document.querySelector(".account ul");
+avatarUser.addEventListener("click", function () {
+  accountMenu.classList.toggle("active");
+});
