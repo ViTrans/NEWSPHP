@@ -5,7 +5,6 @@ $page = basename($_SERVER['PHP_SELF']);
 session_start();
 $result = getPost($con);
 $re = getCategory($con);
-$id = 7;
 ?>
 <!DOCTYPE html>
 <html lang="en">

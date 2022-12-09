@@ -1,4 +1,9 @@
 <?php
+// select tổng id của bảng posts
+$resultId = totalRecord($con);
+$rowId = mysqli_fetch_assoc($resultId);
+$total_records = $rowId['total'];
+$id = $total_records - 3;
 ?>
 <div class="post-new">
     <h2 class="heading">

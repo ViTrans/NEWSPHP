@@ -3,9 +3,9 @@ include_once 'func/connect.php';
 include_once 'func/funcs.php';
 $output = '';
 $id = $_POST['id'];
-loadMore($con,$id);
+// loadMorePostNews($con,$id);
 
-$result = loadMore($con,$id);
+$result = loadMorePostNews($con,$id);
 
 if(mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result)){

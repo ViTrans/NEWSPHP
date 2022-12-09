@@ -56,7 +56,7 @@ if(isset($_POST['username'])){
     if(empty($err)){
         $pass = password_hash($password, PASSWORD_DEFAULT);
        signup($con,$username,$email,$pass,$avatar,$birthday,$gender);
-       echo '<script>alert("Đăng ký thành công");window.location.href="login.php"</script>';
+       echo '<script>alert("Đăng ký thành công");window.location.href="?url=login.php"</script>';
     }
 }
 ?>
