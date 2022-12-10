@@ -17,7 +17,9 @@ $categories = mysqli_fetch_assoc($result);
 $result = getThanhVienDangKy();
 $users = mysqli_fetch_assoc($result);
 
-
+// lấy bài viết nổi bật
+$result = getTotalPostFeatured();
+$posts_featured = mysqli_fetch_assoc($result);
 
 ?>
 
@@ -36,6 +38,15 @@ $users = mysqli_fetch_assoc($result);
                 </div>
                 <div class="card-image">
                     <i class="fas fa-hand-holding-medical"></i>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-infor">
+                    <span><?php echo $posts_featured['baivietnoibat'] ?></span>
+                    <div class="card-title">Bài viết Nổi Bật</div>
+                </div>
+                <div class="card-image">
+                    <i class="fa-solid fa-star"></i>
                 </div>
             </div>
             <div class="card">

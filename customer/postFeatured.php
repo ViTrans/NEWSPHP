@@ -1,6 +1,6 @@
 <?php
 include './func/connect.php';
-$result = getFeaturedPost($con);
+$result = getAllFeaturedPost($con);
 ?>
 <div class="container">
     <h2 class="heading">Bài Viết Nổi Bật</h2>
