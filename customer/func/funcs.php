@@ -13,6 +13,11 @@ function getFeaturedPost($con){
     FROM posts WHERE featured = 1 AND status = 1 ORDER BY created_at DESC LIMIT 4";
     return mysqli_query($con,$sql);
 }
+function getAllFeaturedPost($con){
+    $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name
+    FROM posts WHERE featured = 1 AND status = 1 ORDER BY created_at DESC";
+    return mysqli_query($con,$sql);
+}
 function getPostByCategory($con,$id){
     $sql = "SELECT *, (SELECT title FROM category WHERE category.id = posts.category_id) AS category_name
     FROM posts WHERE category_id = $id and status = 1";
@@ -54,7 +59,7 @@ function postRelated($con, $id, $idPost)
 
 }
 function signup($con,$username,$email,$password,$avatar,$birthday,$gender){
-    $sql = "INSERT INTO `users` (`id`, `email`, `username`, `password`, `avatar`, `birthday`, `gender`, `status`) VALUES (NULL, '$email', '$username', '$password', '$avatar', '$birthday', '$gender', '0');";
+    $sql = "INSERT INTO `users` (`id`, `email`, `username`, `password`, `avatar`, `birthday`, `gender`, `status`) VALUES (NULL, '$email', '$username', '$password', '$avatar', '$birthday', '$gender', '1');";
     return mysqli_query($con,$sql);
 }
 function login($con,$email){

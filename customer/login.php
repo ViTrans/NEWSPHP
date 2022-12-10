@@ -14,9 +14,13 @@ if(isset($_POST['email'])){ // kiểm tra xem có click vào nút đăng ký hay
     $query = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($query);
     $checkEmail = mysqli_num_rows($query);
+    $checkStatus = $data['status'];
+    if($checkStatus == 0){
+      $err['email'] = 'tài khoản đã bị khóa';
+    }
     if($checkEmail == 1){
         $checkPass = password_verify($password, $data['password']);
-      if($checkPass == true){
+      if($checkPass == true && $checkStatus == 1){
         $_SESSION['user'] = $data;
         header("Location: index.php");
     }

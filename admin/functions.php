@@ -35,6 +35,7 @@ function validateInputInt($name, $input = true, $min = 1, $max = 10000)
 
 $caterogies = ["danhsachdanhmuc", "suadanhmuc", "themdanhmuc"];
 $posts = ["suabaiviet", "thembaiviet", "danhsachbaiviet"];
+$users = ["danhsachnguoidung"];
 
 
 
@@ -270,5 +271,18 @@ function getThanhVienDangKy()
 {
     global $con;
     $sql = "SELECT COUNT(*) as thanhvien from users";
+    return mysqli_query($con, $sql);
+}
+function getTotalPostFeatured()
+{
+    global $con;
+    $sql = "SELECT COUNT(*) as baivietnoibat from posts where status = 1 and featured = 1";
+    return mysqli_query($con, $sql);
+}
+
+function getAllUsers ()
+{
+    global $con;
+    $sql = "SELECT * from users";
     return mysqli_query($con, $sql);
 }
