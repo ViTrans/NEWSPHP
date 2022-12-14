@@ -244,7 +244,7 @@ body {
   width: 15px;
   height: 15px;
   border-radius: 100rem;
-  background-color: var(--white);
+  background-color: white;
   cursor: pointer;
   transition: background-color 0.25s linear;
 }
@@ -564,74 +564,6 @@ footer ul li a:hover {
   display: none;
 }
 
-@media screen and (max-width: 1023px) {
-  .menu li:hover ul {
-    grid-template-columns: 1fr 1fr;
-  }
-  .navbar {
-    padding: 20px;
-  }
-  .post-list {
-    grid-template-columns: 100%;
-    grid-gap: 30px 0;
-  }
-
-  .post-media {
-    position: relative;
-    padding-top: 56.25%;
-    height: 0;
-  }
-
-  .post-image,
-  .post-feature-image {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-  }
-
-  .post-feature {
-    grid-template-columns: 100%;
-    grid-gap: 30px 0;
-  }
-
-  .post-feature-title {
-    font-size: 25px;
-    line-height: 1.3;
-  }
-  .post-header-main .post-item .post-image {
-    height: 100%;
-  }
-  .post-details-content {
-    max-width: 100%;
-  }
-  .account ul {
-    position: absolute;
-    width: 30%;
-  }
-  .account a {
-    font-size: 0.9rem;
-  }
-  footer {
-    flex-direction: column;
-  }
-  footer p {
-    padding-bottom: 10px;
-  }
-  .post-related .post-list {
-    display: flex;
-    width: 100%;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 25px;
-    column-gap: 20px;
-    overflow-x: auto;
-  }
-  .post-related .post-list .post-item {
-    flex: 0 0 300px;
-    scroll-snap-align: start;
-  }
-}
 /* post comment */
 .post-comment {
   max-width: 1000px;
@@ -796,7 +728,7 @@ footer ul li a:hover {
 .sroll-to-top svg {
   width: 50px;
   height: 50px;
-  color: var(--white);
+  color: white;
   background-color: #ff6464;
   cursor: pointer;
   padding: 15px;
@@ -820,4 +752,75 @@ footer ul li a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media screen and (max-width: 1023px) {
+  .slider-wrapper {
+    height: auto;
+  }
+  .menu li:hover ul {
+    grid-template-columns: 1fr 1fr;
+  }
+  .navbar {
+    padding: 20px;
+  }
+  .post-list {
+    grid-template-columns: 100%;
+    grid-gap: 30px 0;
+  }
+
+  .post-media {
+    position: relative;
+    padding-top: 56.25%;
+    height: 0;
+  }
+
+  .post-image,
+  .post-feature-image {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+
+  .post-feature {
+    grid-template-columns: 100%;
+    grid-gap: 30px 0;
+  }
+
+  .post-feature-title {
+    font-size: 25px;
+    line-height: 1.3;
+  }
+  .post-header-main .post-item .post-image {
+    height: 100%;
+  }
+  .post-details-content {
+    max-width: 100%;
+  }
+  .account ul {
+    position: absolute;
+    width: 30%;
+  }
+  .account a {
+    font-size: 0.9rem;
+  }
+  footer {
+    flex-direction: column;
+  }
+  footer p {
+    padding-bottom: 10px;
+  }
+  .post-related .post-list {
+    display: flex;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 25px;
+    column-gap: 20px;
+    overflow-x: auto;
+  }
+  .post-related .post-list .post-item {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+  }
 }
