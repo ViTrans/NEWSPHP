@@ -28,7 +28,7 @@ function getPostById($con,$id){
     return mysqli_query($con,$sql);
 }
 function getCommentByPostId($con,$id){
-    $sql = "SELECT *, (SELECT username FROM users WHERE users.id = comments.user_id) AS user_name ,(SELECT avatar FROM users WHERE users.id = comments.user_id) AS avatar FROM comments WHERE post_id = $id";
+    $sql = "SELECT *, (SELECT username FROM users WHERE users.id = comments.user_id) AS user_name ,(SELECT avatar FROM users WHERE users.id = comments.user_id) AS avatar FROM comments WHERE post_id = $id order by created_at desc";
     return mysqli_query($con,$sql);
 }
 function totalRecord($con){

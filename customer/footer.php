@@ -1,6 +1,6 @@
 <footer>
     <div>
-        <p class="text-center">@2018 - All Rights Reserved</p>
+        <p class="text-center">2022 - All Rights Reserved</p>
     </div>
     <div class="footer-page">
         <ul>
