@@ -3,7 +3,6 @@
 $id = validateInputInt("id", false);
 
 if (empty($id)) {
-    setMsg("edit_cate", "danh mục không tồn tại", "error");
     redirect("?page=danhsachdanhmuc");
 } else {
 
@@ -11,8 +10,9 @@ if (empty($id)) {
         select(["category"], ['*'], "status = 1 and id = '$id' ")[0];
 
     if (empty($result)) {
-        setMsg("edit_cate", "danh mục không tồn tại", "error");
-        redirect("?page=danhsachdanhmuc");
+        // redirect("?page=danhsachdanhmuc");
+        header("Location: ?page=danhsachdanhmuc");
+        die;
     }
 }
 
@@ -45,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ], "id = '$id'");
         setMsg("edit_cate", "Sửa thành công danh mục");
         redirect("?page=danhsachdanhmuc");
+    } else {
+        setMsg("edit_cate", "Sửa danh mục không thành công", "error");
     }
 }
 
@@ -53,9 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <div class="content">
+    <?= displayMsg("edit_cate"); ?>
     <div class="section-heading">
         <h2>Sửa danh mục</h2>
-        <?= displayMsg("edit_cate"); ?>
         <button><a href="?page=danhsachdanhmuc">Quay lại</a></button>
     </div>
     <div>

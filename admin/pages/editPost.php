@@ -16,7 +16,9 @@ $post = select(
 )[0];
 
 if (empty($post)) {
-    redirect("?page=danhsachbaiviet");
+    // redirect("?page=danhsachbaiviet");
+    header("Location: ?page=danhsachbaiviet");
+    die;
 }
 
 
@@ -33,14 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cate = validateInputInt("cate_id");
     $featured = validateInputInt("featured", true, 0);
     $description = trim($_POST['description']);
-    // ko up img thi lay anh cu
+
     if (empty($_FILES['img']['name'])) {
         $path = $_POST['path'];
     } else {
         $file = handleFileUpload($_FILES['img']);
         if (is_array($file)) {
             $path = $file[0];
-            unlink($post['img']);
         } else {
             $errors['img'] =  $file;
         }

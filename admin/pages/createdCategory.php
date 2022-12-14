@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     insert("category", ['title' => $name, "status" => 1]);
     setMsg("created_cate", "Thêm thành công danh mục");
     redirect("?page=danhsachdanhmuc");
+  } else {
+    setMsg("created_cate", "Thêm danh mục không thành công", "error");
   }
 }
 
@@ -36,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <div class="content">
+  <?= displayMsg("created_cate"); ?>
   <div class="section-heading">
-    <?= displayMsg("created_cate"); ?>
     <h2>Sửa danh mục</h2>
     <button><a href="?page=danhsachdanhmuc">Quay lại</a></button>
   </div>
