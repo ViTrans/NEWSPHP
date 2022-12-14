@@ -72,7 +72,7 @@ function insert($table, $data = [])
     return $con->affected_rows;
 }
 
-function updated($table, $data = [], $condition)
+function updated($table, $data = [], $condition = "1 = 1")
 {
     global $con;
 
@@ -112,15 +112,6 @@ function select(
     $result = mysqli_query($con, $sql);
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
-
-
-
-function test()
-{
-
-    return 1;
-}
-
 
 
 
@@ -195,20 +186,23 @@ function handleFileUpload($file, $option = "post")
 
 
     $folder = "../uploads/" . $option . "/" . date("d-m-Y", time());
-    // $folder = "../uploads/" . $option;
+
 
 
     if (!file_exists($folder)) {
         mkdir($folder, 0777);
     }
 
-    // trùng name thì thêm 'copy' thôi =>
+    // trùng name 
     if (file_exists("$folder/$fileName")) {
         $fileNameNew = "$folder/" . pathinfo($fileName, PATHINFO_FILENAME) . "(copy)." . pathinfo($fileName, PATHINFO_EXTENSION);
-        rename("$folder/$fileName", $fileNameNew);
+        $fileNew[] = $fileNameNew;
+        move_uploaded_file($file['tmp_name'], $fileNameNew);
+    } else {
+        move_uploaded_file($file['tmp_name'], "$folder/$fileName");
+        $fileNew[] = "$folder/$fileName";
     }
-    move_uploaded_file($file['tmp_name'], "$folder/$fileName");
-    $fileNew[] = "$folder/$fileName";
+
     return $fileNew;
 }
 
@@ -280,7 +274,7 @@ function getTotalPostFeatured()
     return mysqli_query($con, $sql);
 }
 
-function getAllUsers ()
+function getAllUsers()
 {
     global $con;
     $sql = "SELECT * from users";

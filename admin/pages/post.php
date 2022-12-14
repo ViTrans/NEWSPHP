@@ -1,7 +1,7 @@
 <?php
 
 
-if (isset($_POST['filter']) && !empty($_POST)) {
+if (isset($_POST['filter'])) {
     $_SESSION['filter'] = [
         "title" => $_POST['title'],
         "cate_id" => $_POST['cate_id']

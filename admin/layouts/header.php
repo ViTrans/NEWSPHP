@@ -37,9 +37,7 @@ $pagelist = [
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.ckeditor.com/4.9.2/full-all/ckeditor.js"></script>
     <script defer src="./js/main.js"></script>
     <link rel="stylesheet" href="css/style.css" />
@@ -95,6 +93,6 @@ $pagelist = [
             <i class="fa-solid fa-bars" id="bar_btn"></i>
             <div class="avatar">
                 <h2><?= $_SESSION['admin']['username'] ?></h2>
-                <img src="./images/avatar.png" alt="" />
+                <img src="./images/avatar.png" />
             </div>
         </div>
